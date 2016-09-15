@@ -1,0 +1,34 @@
+c:\users\абылайхан\documents\visual studio 2015\Projects\StampTracker\StampTracker\bin\Debug\StampTracker.exe.config
+c:\users\абылайхан\documents\visual studio 2015\Projects\StampTracker\StampTracker\bin\Debug\StampTracker.exe
+c:\users\абылайхан\documents\visual studio 2015\Projects\StampTracker\StampTracker\bin\Debug\StampTracker.pdb
+c:\users\абылайхан\documents\visual studio 2015\Projects\StampTracker\StampTracker\obj\Debug\StampTracker.csprojResolveAssemblyReference.cache
+c:\users\абылайхан\documents\visual studio 2015\Projects\StampTracker\StampTracker\obj\Debug\StampTracker.Properties.Resources.resources
+c:\users\абылайхан\documents\visual studio 2015\Projects\StampTracker\StampTracker\obj\Debug\StampTracker.csproj.GenerateResource.Cache
+c:\users\абылайхан\documents\visual studio 2015\Projects\StampTracker\StampTracker\obj\Debug\StampTracker.exe
+c:\users\абылайхан\documents\visual studio 2015\Projects\StampTracker\StampTracker\obj\Debug\StampTracker.pdb
+c:\users\абылайхан\documents\visual studio 2015\Projects\StampTracker\StampTracker\obj\Debug\StampTracker.Form1.resources
+E:\PROJECTS\stampTracker\stampTracker\StampTracker\bin\Debug\StampTracker.exe.config
+E:\PROJECTS\stampTracker\stampTracker\StampTracker\obj\Debug\StampTracker.exe
+E:\PROJECTS\stampTracker\stampTracker\StampTracker\obj\Debug\StampTracker.pdb
+E:\PROJECTS\stampTracker\stampTracker\StampTracker\bin\Debug\StampTracker.exe
+E:\PROJECTS\stampTracker\stampTracker\StampTracker\bin\Debug\StampTracker.pdb
+E:\PROJECTS\stampTracker\stampTracker\StampTracker\obj\Debug\StampTracker.csprojResolveAssemblyReference.cache
+E:\PROJECTS\stampTracker\stampTracker\StampTracker\obj\Debug\StampTracker.Properties.Resources.resources
+E:\PROJECTS\stampTracker\stampTracker\StampTracker\obj\Debug\StampTracker.csproj.GenerateResource.Cache
+E:\PROJECTS\stampTracker\stampTracker\StampTracker\obj\Debug\StampTracker.MainForm.resources
+E:\PROJECTS\stampTracker\stampTracker\StampTracker\obj\Debug\StampTracker.LoginForm.resources
+E:\PROJECTS\stampTracker\stampTracker\StampTracker\obj\Debug\StampTracker.NewDocForm.resources
+C:\Users\baidullayev_a\Documents\Visual Studio 2015\Projects\StampTracker\StampTracker\StampTracker\bin\Debug\StampTracker.exe.config
+C:\Users\baidullayev_a\Documents\Visual Studio 2015\Projects\StampTracker\StampTracker\StampTracker\obj\Debug\StampTracker.exe
+C:\Users\baidullayev_a\Documents\Visual Studio 2015\Projects\StampTracker\StampTracker\StampTracker\obj\Debug\StampTracker.pdb
+C:\Users\baidullayev_a\Documents\Visual Studio 2015\Projects\StampTracker\StampTracker\StampTracker\bin\Debug\StampTracker.exe
+C:\Users\baidullayev_a\Documents\Visual Studio 2015\Projects\StampTracker\StampTracker\StampTracker\bin\Debug\StampTracker.pdb
+C:\Users\baidullayev_a\Documents\Visual Studio 2015\Projects\StampTracker\StampTracker\StampTracker\obj\Debug\StampTracker.csprojResolveAssemblyReference.cache
+C:\Users\baidullayev_a\Documents\Visual Studio 2015\Projects\StampTracker\StampTracker\StampTracker\obj\Debug\StampTracker.LoginForm.resources
+C:\Users\baidullayev_a\Documents\Visual Studio 2015\Projects\StampTracker\StampTracker\StampTracker\obj\Debug\StampTracker.MainForm.resources
+C:\Users\baidullayev_a\Documents\Visual Studio 2015\Projects\StampTracker\StampTracker\StampTracker\obj\Debug\StampTracker.NewDocForm.resources
+C:\Users\baidullayev_a\Documents\Visual Studio 2015\Projects\StampTracker\StampTracker\StampTracker\obj\Debug\StampTracker.Properties.Resources.resources
+C:\Users\baidullayev_a\Documents\Visual Studio 2015\Projects\StampTracker\StampTracker\StampTracker\obj\Debug\StampTracker.csproj.GenerateResource.Cache
+C:\Users\baidullayev_a\Documents\Visual Studio 2015\Projects\StampTracker\StampTracker\bin\Debug\StampTracker.exe.config
+C:\Users\baidullayev_a\Documents\Visual Studio 2015\Projects\StampTracker\StampTracker\obj\Debug\StampTracker.exe
+C:\Users\baidullayev_a\Documents\Visual Studio 2015\Projects\StampTracker\StampTracker\obj\Debug\StampTracker.pdb
