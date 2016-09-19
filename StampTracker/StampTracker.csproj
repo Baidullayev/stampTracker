@@ -64,6 +64,12 @@
     <Compile Include="NewDocForm.Designer.cs">
       <DependentUpon>NewDocForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OpenDocForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OpenDocForm.Designer.cs">
+      <DependentUpon>OpenDocForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="LoginForm.resx">
@@ -74,6 +80,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewDocForm.resx">
       <DependentUpon>NewDocForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpenDocForm.resx">
+      <DependentUpon>OpenDocForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

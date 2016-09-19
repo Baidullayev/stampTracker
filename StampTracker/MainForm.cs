@@ -37,5 +37,10 @@ namespace StampTracker
             newDocForm.WindowState = FormWindowState.Normal;
             newDocForm.WindowState = FormWindowState.Maximized;
         }
+
+        private void выйтиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
+        }
     }
 }

@@ -37,31 +37,55 @@ namespace StampTracker
 
         private void button2_Click(object sender, EventArgs e)
         {
-            System.IO.Stream myStream = null;
-            OpenFileDialog attacheDocFile = new OpenFileDialog();
 
-            attacheDocFile.InitialDirectory = "c:\\";
-            attacheDocFile.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            attacheDocFile.FilterIndex = 2;
-            attacheDocFile.RestoreDirectory = true;
 
-            if (attacheDocFile.ShowDialog() == DialogResult.OK)
+
+            openFileDialog1.InitialDirectory = "c:\\";
+            openFileDialog1.Filter = "Corel Draw files (*.cdr)|*.cdr|" + "All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                try
-                {
-                    if ((myStream = attacheDocFile.OpenFile()) != null)
-                    {
-                        using (myStream)
-                        {
-                            MessageBox.Show(myStream.Read().ToString());
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-                }
+                docBox.Text = openFileDialog1.FileName;
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
+
+            openFileDialog1.InitialDirectory = "c:\\";
+            openFileDialog1.Filter = "Image Files(*.bmp, *.jpg, *.png, *.tif) | *.bmp; *.jpg; *.tif; *.png |" + "All files (*.*) | *.*";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                scannedDocBox.Text = openFileDialog1.FileName;
+                viewScanImgButton.Enabled = true;
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if(scannedDocBox.Text != "")
+            {
+                Image scannedImage = Image.FromFile(scannedDocBox.Text);
+                pictureBox1.Image = scannedImage;
+            }
+             
+            
+        }
+
+        private void viewDocButton_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@docBox.Text);
         }
     }
 }
