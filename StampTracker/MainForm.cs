@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +12,18 @@ using System.Windows.Forms;
 
 namespace StampTracker
 {
+    
+
     public partial class MainForm : Form
     {
+        public static IniFile myIni = new IniFile(Directory.GetCurrentDirectory() + "\\settings.ini");
+        public static string serverName;
+        public static string instanceName;
+        public static string dbName;
+        public static string loginSql;
+        public static string passwordSql;
+
+        
         public MainForm()
         {
             InitializeComponent();
@@ -19,13 +31,43 @@ namespace StampTracker
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+          
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            IsMdiContainer = true;
+             serverName = myIni.Read("serverName", "SqlServer connection parameters");
+             instanceName = myIni.Read("instanceName", "SqlServer connection parameters");
+             dbName = myIni.Read("dbName", "SqlServer connection parameters");
+             loginSql = myIni.Read("login", "SqlServer connection parameters");
+             passwordSql = myIni.Read("password", "SqlServer connection parameters");
+           
+            if (serverName != "null" || instanceName != "null" || dbName != "null" || loginSql != "null" || passwordSql != "null")
+            {
+                
+                //try
+                //{
+                //    String str = "server=" + serverName + "\\" + instanceName + ";database=" + dbName + ";UID=" + loginSql + ";password=" + passwordSql;
+                //    String query = "select * from users";
+                //    SqlConnection con = new SqlConnection(str);
+                //    SqlCommand cmd = new SqlCommand(query, con);
+                //    con.Open();
+                //    DataSet ds = new DataSet();
+                //    ConnectionStripLabel.Text = "Соединение с БД установлено";                //   
+                //    con.Close();
+                //}
+                //catch (Exception es)
+                //{
+                //    ConnectionStripLabel.Text = "Соединение с БД не установлено";
+                //    MessageBox.Show(es.Message);
 
+                //}
+            }
+            else ConnectionStripLabel.Text = "Требуется настройка сервера БД";
+
+
+            IsMdiContainer = true;
+            
         }
 
         private void создатьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -41,6 +83,22 @@ namespace StampTracker
         private void выйтиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Application.Exit();
+        }
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenDocForm openForm = new OpenDocForm();
+            openForm.MdiParent = this;
+            openForm.BringToFront();
+            openForm.Show();
+            openForm.WindowState = FormWindowState.Normal;
+            openForm.WindowState = FormWindowState.Maximized;
+        }
+
+        private void параметрыSqlServerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SettingsForm settingsForm = new SettingsForm();
+            settingsForm.Show();
         }
     }
 }

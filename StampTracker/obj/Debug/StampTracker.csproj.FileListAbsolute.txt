@@ -51,3 +51,5 @@ E:\PROJECTS\stampTracker\StampTracker\obj\Debug\StampTracker.MainForm.resources
 E:\PROJECTS\stampTracker\StampTracker\obj\Debug\StampTracker.NewDocForm.resources
 E:\PROJECTS\stampTracker\StampTracker\obj\Debug\StampTracker.Properties.Resources.resources
 E:\PROJECTS\stampTracker\StampTracker\obj\Debug\StampTracker.csproj.GenerateResource.Cache
+C:\Users\baidullayev_a\Documents\Visual Studio 2015\Projects\StampTracker\StampTracker\obj\Debug\StampTracker.OpenDocForm.resources
+C:\Users\baidullayev_a\Documents\Visual Studio 2015\Projects\StampTracker\StampTracker\obj\Debug\StampTracker.SettingsForm.resources
