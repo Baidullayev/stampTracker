@@ -23,6 +23,8 @@ namespace StampTracker
         public static string loginSql;
         public static string passwordSql;
 
+        public static User currentUser;
+        public static string connectionString = null;        
         
         public MainForm()
         {
@@ -44,24 +46,24 @@ namespace StampTracker
            
             if (serverName != "null" || instanceName != "null" || dbName != "null" || loginSql != "null" || passwordSql != "null")
             {
-                
-                //try
-                //{
-                //    String str = "server=" + serverName + "\\" + instanceName + ";database=" + dbName + ";UID=" + loginSql + ";password=" + passwordSql;
-                //    String query = "select * from users";
-                //    SqlConnection con = new SqlConnection(str);
-                //    SqlCommand cmd = new SqlCommand(query, con);
-                //    con.Open();
-                //    DataSet ds = new DataSet();
-                //    ConnectionStripLabel.Text = "Соединение с БД установлено";                //   
-                //    con.Close();
-                //}
-                //catch (Exception es)
-                //{
-                //    ConnectionStripLabel.Text = "Соединение с БД не установлено";
-                //    MessageBox.Show(es.Message);
+                try
+                {
+                    String str = "server=" + serverName + "\\" + instanceName + ";database=" + dbName + ";UID=" + loginSql + ";password=" + passwordSql;
+                    //String query = "select * from users";
+                    SqlConnection con = new SqlConnection(str);
+                   // SqlCommand cmd = new SqlCommand(query, con);
+                    con.Open();
+                    //DataSet ds = new DataSet();
+                    ConnectionStripLabel.Text = "Соединение с БД установлено";                //   
+                    con.Close();
+                    connectionString = str;
+                }
+                catch (Exception es)
+                {
+                    ConnectionStripLabel.Text = "Соединение с БД не установлено";
+                    MessageBox.Show(es.Message);
 
-                //}
+                }
             }
             else ConnectionStripLabel.Text = "Требуется настройка сервера БД";
 
@@ -99,6 +101,28 @@ namespace StampTracker
         {
             SettingsForm settingsForm = new SettingsForm();
             settingsForm.Show();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            //ToolStripMenuItem item1 = new ToolStripMenuItem();
+            //item1.Text = "выйти";
+            //loginMenu.DropDownItems.Add(item1);
+            //currentUser = new User();
+            //currentUser = null;
+            //if (currentUser == null)
+            //{
+            //    MessageBox.Show("Null");
+            //}
+            //else MessageBox.Show("User has instablished");
+            DateTime utcDate = DateTime.UtcNow;
+            MessageBox.Show(utcDate.ToShortDateString());
+        }
+
+        private void loginMenu_Click(object sender, EventArgs e)
+        {
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
         }
     }
 }

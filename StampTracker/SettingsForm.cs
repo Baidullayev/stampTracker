@@ -26,6 +26,7 @@ namespace StampTracker
             MainForm.dbName = dbNameBox.Text;
             MainForm.loginSql = loginBox.Text;
             MainForm.passwordSql = passwordBox.Text;
+
             try
             {
                 MainForm.myIni.Write("serverName", MainForm.serverName, "SqlServer connection parameters");
@@ -33,6 +34,7 @@ namespace StampTracker
                 MainForm.myIni.Write("dbName", MainForm.dbName, "SqlServer connection parameters");
                 MainForm.myIni.Write("login", MainForm.loginSql, "SqlServer connection parameters");
                 MainForm.myIni.Write("password", MainForm.passwordSql, "SqlServer connection parameters");
+                MainForm.connectionString = "server=" + MainForm.serverName + "\\" + MainForm.instanceName + ";database=" + MainForm.dbName + ";UID=" + MainForm.loginSql + ";password=" + MainForm.passwordSql;
                 MessageBox.Show("Параметры успешно сохранены!");
             }
             catch(Exception es)

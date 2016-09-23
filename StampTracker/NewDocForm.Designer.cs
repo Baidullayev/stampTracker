@@ -37,12 +37,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.viewScanImgButton = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.viewDocButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,7 +111,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(206, 13);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Приврепить отсканированный вариант";
+            this.label4.Text = "Прикрепить отсканированный вариант";
             // 
             // button1
             // 
@@ -135,23 +135,12 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // saveButton
-            // 
-            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.saveButton.Location = new System.Drawing.Point(814, 156);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(114, 32);
-            this.saveButton.TabIndex = 9;
-            this.saveButton.Text = "Сохранить";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.button3_Click);
-            // 
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button4.Location = new System.Drawing.Point(715, 156);
+            this.button4.Location = new System.Drawing.Point(732, 156);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(93, 32);
+            this.button4.Size = new System.Drawing.Size(93, 31);
             this.button4.TabIndex = 10;
             this.button4.Text = "очистить";
             this.button4.UseVisualStyleBackColor = true;
@@ -193,17 +182,27 @@
             this.viewDocButton.UseVisualStyleBackColor = true;
             this.viewDocButton.Click += new System.EventHandler(this.viewDocButton_Click);
             // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(831, 156);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(96, 31);
+            this.saveButton.TabIndex = 14;
+            this.saveButton.Text = "Сохранить";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
             // NewDocForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1018, 715);
+            this.Controls.Add(this.saveButton);
             this.Controls.Add(this.viewDocButton);
             this.Controls.Add(this.viewScanImgButton);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.saveButton);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.scannedDocBox);
@@ -235,11 +234,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button viewScanImgButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button viewDocButton;
+        private System.Windows.Forms.Button saveButton;
     }
 }

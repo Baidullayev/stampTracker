@@ -50,9 +50,7 @@ namespace StampTracker
 
         private void button7_Click(object sender, EventArgs e)
         {
-            
-            string path = Directory.GetCurrentDirectory();
-            MessageBox.Show(path);
+
         }
     }
 }

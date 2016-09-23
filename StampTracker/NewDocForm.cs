@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -86,6 +88,54 @@ namespace StampTracker
         private void viewDocButton_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(@docBox.Text);
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            if (docBox.Text != "" || nameBox.Text != "" || scannedDocBox.Text != "")
+            {
+                try
+                {
+                    var newDocName = nameBox.Text;
+                    var docFilePath = docBox.Text;
+                    var scannedFilePath = scannedDocBox.Text;
+                    using (SqlConnection con = new SqlConnection(MainForm.connectionString))
+                    {
+                        con.Open();
+                        FileStream docFileStream = File.OpenRead(docFilePath);
+                        byte[] docFileContent = new byte[docFileStream.Length];
+                        docFileStream.Read(docFileContent,0,(int)docFileStream.Length);
+                        docFileStream.Close();
+
+                        FileStream scannedDocFileStream = File.OpenRead(scannedFilePath);
+                        byte[] scannedDocFileContent = new byte[scannedDocFileStream.Length];
+                        scannedDocFileStream.Read(scannedDocFileContent, 0, (int)scannedDocFileStream.Length);
+                        scannedDocFileStream.Close();
+
+                        using (SqlCommand cmd = new SqlCommand("insert into documents values(@name, @date,@doc, @scannedDoc)",con))
+                        {
+                            cmd.Parameters.AddWithValue("@name",newDocName);
+                            DateTime utcDate = DateTime.UtcNow;
+                            cmd.Parameters.AddWithValue("@date", utcDate);
+                            cmd.Parameters.AddWithValue("@doc", docFileContent);
+                            cmd.Parameters.AddWithValue("@scannedDoc", scannedDocFileContent);
+                            cmd.ExecuteNonQuery();                            
+                            MessageBox.Show("Новый документ создан успешно!");
+                        }
+                         
+                    }
+
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Вы должный указать найменование документа и прикрепить файлы");
+            }
+
         }
     }
 }
