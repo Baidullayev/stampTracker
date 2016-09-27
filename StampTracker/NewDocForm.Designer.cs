@@ -43,6 +43,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.viewDocButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,9 +117,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(744, 107);
+            this.button1.Location = new System.Drawing.Point(744, 108);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 24);
+            this.button1.Size = new System.Drawing.Size(81, 23);
             this.button1.TabIndex = 7;
             this.button1.Text = "обзор";
             this.button1.UseVisualStyleBackColor = true;
@@ -127,7 +128,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(744, 74);
+            this.button2.Location = new System.Drawing.Point(744, 75);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(81, 23);
             this.button2.TabIndex = 8;
@@ -159,9 +160,9 @@
             // 
             this.viewScanImgButton.Enabled = false;
             this.viewScanImgButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.viewScanImgButton.Location = new System.Drawing.Point(831, 105);
+            this.viewScanImgButton.Location = new System.Drawing.Point(830, 108);
             this.viewScanImgButton.Name = "viewScanImgButton";
-            this.viewScanImgButton.Size = new System.Drawing.Size(97, 25);
+            this.viewScanImgButton.Size = new System.Drawing.Size(97, 23);
             this.viewScanImgButton.TabIndex = 12;
             this.viewScanImgButton.Text = "просмотр";
             this.viewScanImgButton.UseVisualStyleBackColor = true;
@@ -174,7 +175,7 @@
             // viewDocButton
             // 
             this.viewDocButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.viewDocButton.Location = new System.Drawing.Point(831, 74);
+            this.viewDocButton.Location = new System.Drawing.Point(831, 75);
             this.viewDocButton.Name = "viewDocButton";
             this.viewDocButton.Size = new System.Drawing.Size(97, 23);
             this.viewDocButton.TabIndex = 13;
@@ -192,12 +193,23 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(612, 164);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 15;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
             // NewDocForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1018, 715);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.viewDocButton);
             this.Controls.Add(this.viewScanImgButton);
@@ -240,5 +252,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button viewDocButton;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button button3;
     }
 }

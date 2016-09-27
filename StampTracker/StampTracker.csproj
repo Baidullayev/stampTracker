@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditUsersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditUsersForm.Designer.cs">
+      <DependentUpon>EditUsersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CalculatorMD5.cs" />
     <Compile Include="IniFile.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -65,6 +72,12 @@
     <Compile Include="NewDocForm.Designer.cs">
       <DependentUpon>NewDocForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewUserForm.Designer.cs">
+      <DependentUpon>NewUserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="OpenDocForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +93,9 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
+    <EmbeddedResource Include="EditUsersForm.resx">
+      <DependentUpon>EditUsersForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -88,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewDocForm.resx">
       <DependentUpon>NewDocForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewUserForm.resx">
+      <DependentUpon>NewUserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OpenDocForm.resx">
       <DependentUpon>OpenDocForm.cs</DependentUpon>

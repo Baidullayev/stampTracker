@@ -38,12 +38,14 @@ namespace StampTracker
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-             serverName = myIni.Read("serverName", "SqlServer connection parameters");
-             instanceName = myIni.Read("instanceName", "SqlServer connection parameters");
-             dbName = myIni.Read("dbName", "SqlServer connection parameters");
-             loginSql = myIni.Read("login", "SqlServer connection parameters");
-             passwordSql = myIni.Read("password", "SqlServer connection parameters");
-           
+            serverName = myIni.Read("serverName", "SqlServer connection parameters");
+            instanceName = myIni.Read("instanceName", "SqlServer connection parameters");
+            dbName = myIni.Read("dbName", "SqlServer connection parameters");
+            loginSql = myIni.Read("login", "SqlServer connection parameters");
+            passwordSql = myIni.Read("password", "SqlServer connection parameters");
+            List<String> roleList = new List<String>();  
+
+
             if (serverName != "null" || instanceName != "null" || dbName != "null" || loginSql != "null" || passwordSql != "null")
             {
                 try
@@ -115,14 +117,40 @@ namespace StampTracker
             //    MessageBox.Show("Null");
             //}
             //else MessageBox.Show("User has instablished");
-            DateTime utcDate = DateTime.UtcNow;
-            MessageBox.Show(utcDate.ToShortDateString());
+        
+
         }
 
         private void loginMenu_Click(object sender, EventArgs e)
         {
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
+        }
+
+        private void добавитьПользователяToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool notExist = true;
+
+            for (int i = 0; i < Application.OpenForms.Count; i++)
+            {
+                if (Application.OpenForms[i].Name == "NewUserForm")
+                {
+                    notExist = false;
+                    Application.OpenForms[i].TopMost = true;
+                }
+
+            }
+            if (notExist)
+            {
+                NewUserForm newUserForm = new NewUserForm();
+                newUserForm.Show();
+            }
+        }
+
+        private void рекдактироватьПользователейToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditUsersForm editUsersForm = new EditUsersForm();
+            editUsersForm.Show();
         }
     }
 }

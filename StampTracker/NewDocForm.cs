@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -102,28 +103,77 @@ namespace StampTracker
                     using (SqlConnection con = new SqlConnection(MainForm.connectionString))
                     {
                         con.Open();
-                        FileStream docFileStream = File.OpenRead(docFilePath);
-                        byte[] docFileContent = new byte[docFileStream.Length];
-                        docFileStream.Read(docFileContent,0,(int)docFileStream.Length);
-                        docFileStream.Close();
-
-                        FileStream scannedDocFileStream = File.OpenRead(scannedFilePath);
-                        byte[] scannedDocFileContent = new byte[scannedDocFileStream.Length];
-                        scannedDocFileStream.Read(scannedDocFileContent, 0, (int)scannedDocFileStream.Length);
-                        scannedDocFileStream.Close();
-
-                        using (SqlCommand cmd = new SqlCommand("insert into documents values(@name, @date,@doc, @scannedDoc)",con))
+                        using (SqlCommand cmd2 = new SqlCommand("select docID from documents where name=@docName", con))
                         {
-                            cmd.Parameters.AddWithValue("@name",newDocName);
-                            DateTime utcDate = DateTime.UtcNow;
-                            cmd.Parameters.AddWithValue("@date", utcDate);
-                            cmd.Parameters.AddWithValue("@doc", docFileContent);
-                            cmd.Parameters.AddWithValue("@scannedDoc", scannedDocFileContent);
-                            cmd.ExecuteNonQuery();                            
-                            MessageBox.Show("Новый документ создан успешно!");
+                            cmd2.Parameters.AddWithValue("@docName", newDocName);
+                            using (SqlDataReader reader = cmd2.ExecuteReader())
+                            {
+                                if (reader.HasRows)
+                                {
+                                    MessageBox.Show("Документ с таким именем уже существует");
+                                    reader.Close();
+                                   
+                                }
+                                else
+                                {
+                                    reader.Close();
+                                    CalculatorMD5 calculatorMD5 = new CalculatorMD5();
+
+                                    FileStream docFileStream = File.OpenRead(docFilePath);
+                                    byte[] docFileContent = new byte[docFileStream.Length];
+                                    string docFileCheckSum = calculatorMD5.getFileHash(docFileStream);
+                                    string docFileExtension = Path.GetExtension(docFilePath);
+
+                                    docFileStream.Read(docFileContent, 0, (int)docFileStream.Length);
+                                    docFileStream.Close();
+
+                                    FileStream scannedDocFileStream = File.OpenRead(scannedFilePath);
+                                    byte[] scannedDocFileContent = new byte[scannedDocFileStream.Length];
+
+                                    string scannedFileCheckSum = calculatorMD5.getFileHash(scannedDocFileStream);
+                                    string scannedFileExtension = Path.GetExtension(scannedFilePath);
+
+                                    using (SqlCommand cmd3 = new SqlCommand("select docID, name from documents where checksumDocFIle=@checksumDocFIle or checksumScannedFile=@checksumScannedFile ", con))
+                                    {
+                                        using (SqlDataReader reader2 = cmd3.ExecuteReader())
+                                        {
+                                            if(reader2.HasRows)
+                                            {
+
+                                                //I stopped here
+                                            }
+                                            else
+                                            {
+                                                reader2.Close();
+                                                scannedDocFileStream.Read(scannedDocFileContent, 0, (int)scannedDocFileStream.Length);
+                                                scannedDocFileStream.Close();
+
+                                                using (SqlCommand cmd = new SqlCommand("insert into documents values(@name, @date,@doc, @scannedDoc, @checkSumOriginal, @checkSumScanned, @docFileExt, @scannedFileExt)", con))
+                                                {
+                                                    cmd.Parameters.AddWithValue("@name", newDocName);
+                                                    DateTime utcDate = DateTime.UtcNow;
+                                                    cmd.Parameters.AddWithValue("@date", utcDate);
+                                                    cmd.Parameters.AddWithValue("@doc", docFileContent);
+                                                    cmd.Parameters.AddWithValue("@scannedDoc", scannedDocFileContent);
+                                                    cmd.Parameters.AddWithValue("@checkSumOriginal", docFileCheckSum);
+                                                    cmd.Parameters.AddWithValue("@checkSumScanned", scannedFileCheckSum);
+                                                    cmd.Parameters.AddWithValue("@docFIleExt", docFileExtension);
+                                                    cmd.Parameters.AddWithValue("@scannedFileExt", scannedFileExtension);
+                                                    cmd.ExecuteNonQuery();
+                                                    MessageBox.Show("Новый документ создан успешно!");
+                                                }
+                                            }
+                                        }
+                                    }
+
+
+
+                                }
+
+                            }
                         }
-                         
                     }
+
 
                 }
                 catch (Exception err)
@@ -136,6 +186,12 @@ namespace StampTracker
                 MessageBox.Show("Вы должный указать найменование документа и прикрепить файлы");
             }
 
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {            
+            var docFilePath = Path.GetExtension(docBox.Text);
+            MessageBox.Show(docFilePath);
         }
     }
 }
