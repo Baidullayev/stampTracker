@@ -13,9 +13,10 @@ using System.Windows.Forms;
 namespace StampTracker
 {
     
-
+    
     public partial class MainForm : Form
     {
+        
         public static IniFile myIni = new IniFile(Directory.GetCurrentDirectory() + "\\settings.ini");
         public static string serverName;
         public static string instanceName;
@@ -23,9 +24,10 @@ namespace StampTracker
         public static string loginSql;
         public static string passwordSql;
 
-        public static User currentUser;
+        public static User currentUser ;
         public static string connectionString = null;        
-        
+        public static bool authorized = false;
+        public static bool check = false;
         public MainForm()
         {
             InitializeComponent();
@@ -38,12 +40,17 @@ namespace StampTracker
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            serverName = myIni.Read("serverName", "SqlServer connection parameters");
+            
+           serverName = myIni.Read("serverName", "SqlServer connection parameters");
             instanceName = myIni.Read("instanceName", "SqlServer connection parameters");
             dbName = myIni.Read("dbName", "SqlServer connection parameters");
             loginSql = myIni.Read("login", "SqlServer connection parameters");
             passwordSql = myIni.Read("password", "SqlServer connection parameters");
-            List<String> roleList = new List<String>();  
+            List<String> roleList = new List<String>();
+            roleList.Add("admin");
+            roleList.Add("user");
+            roleList.Add("reader");
+            
 
 
             if (serverName != "null" || instanceName != "null" || dbName != "null" || loginSql != "null" || passwordSql != "null")
@@ -103,10 +110,12 @@ namespace StampTracker
         {
             SettingsForm settingsForm = new SettingsForm();
             settingsForm.Show();
+            
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+       
             //ToolStripMenuItem item1 = new ToolStripMenuItem();
             //item1.Text = "выйти";
             //loginMenu.DropDownItems.Add(item1);
@@ -123,8 +132,11 @@ namespace StampTracker
 
         private void loginMenu_Click(object sender, EventArgs e)
         {
-            LoginForm loginForm = new LoginForm();
-            loginForm.Show();
+            if (authorized == false)
+            {
+                LoginForm loginForm = new LoginForm();
+                loginForm.Show();
+            }
         }
 
         private void добавитьПользователяToolStripMenuItem_Click(object sender, EventArgs e)
@@ -151,6 +163,70 @@ namespace StampTracker
         {
             EditUsersForm editUsersForm = new EditUsersForm();
             editUsersForm.Show();
+            
+        }
+
+        private void myMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+        public static void ss()
+        {
+            
+            
+        }
+
+        private void MainForm_Enter(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void MainForm_Activated(object sender, EventArgs e)
+        {
+            MenuActivation();
+        }
+
+        private void windowNewMenu_Click(object sender, EventArgs e)
+        {
+            loginMenu.Text = "Войти";
+            loginMenu.DropDownItems.Clear();
+            authorized = false;
+            check = false;
+        }
+        public void MenuActivation()
+        {
+            if (authorized)
+            {
+                if (check == false)
+                {
+                    ToolStripMenuItem windowNewMenu = new ToolStripMenuItem("Выход", null, new EventHandler(windowNewMenu_Click));
+                    loginMenu.Text = currentUser.firstName + " " + currentUser.lastName;
+                    loginMenu.DropDownItems.Add(windowNewMenu);
+                    check = true;
+                    if(currentUser.role.ToLower() == "admin")
+                    {
+                        createMenu.Enabled = true;
+                        openMenu.Enabled = true;
+                        addUserMenu.Enabled = true;
+                        EditUsersMenu.Enabled = true;
+                    }
+                    else if (currentUser.role.ToLower() == "user")
+                    {
+                        createMenu.Enabled = true;
+                        openMenu.Enabled = true;
+                        addUserMenu.Enabled = false;
+                        EditUsersMenu.Enabled = false;
+                    }
+                    else if(currentUser.role.ToLower() == "reader")
+                    {
+                        createMenu.Enabled = false;
+                        openMenu.Enabled = true;
+                        addUserMenu.Enabled = false;
+                        EditUsersMenu.Enabled = false;
+                    }
+
+                }
+            }
         }
     }
 }

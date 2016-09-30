@@ -32,7 +32,7 @@
             this.loginStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.ConnectionStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.myMenu = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.openMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,12 +40,12 @@
             this.выйтиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.параметрыSqlServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.добавитьПользователяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.рекдактироватьПользователейToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addUserMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditUsersMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.loginMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.myMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -76,17 +76,18 @@
             this.ConnectionStripLabel.Size = new System.Drawing.Size(118, 17);
             this.ConnectionStripLabel.Text = "toolStripStatusLabel1";
             // 
-            // menuStrip1
+            // myMenu
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.myMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
             this.настройкиToolStripMenuItem,
             this.loginMenu});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(820, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            this.myMenu.Location = new System.Drawing.Point(0, 0);
+            this.myMenu.Name = "myMenu";
+            this.myMenu.Size = new System.Drawing.Size(820, 24);
+            this.myMenu.TabIndex = 1;
+            this.myMenu.Text = "menuStrip1";
+            this.myMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.myMenu_ItemClicked);
             // 
             // файлToolStripMenuItem
             // 
@@ -102,14 +103,14 @@
             // createMenu
             // 
             this.createMenu.Name = "createMenu";
-            this.createMenu.Size = new System.Drawing.Size(132, 22);
+            this.createMenu.Size = new System.Drawing.Size(152, 22);
             this.createMenu.Text = "Создать";
             this.createMenu.Click += new System.EventHandler(this.создатьToolStripMenuItem_Click);
             // 
             // openMenu
             // 
             this.openMenu.Name = "openMenu";
-            this.openMenu.Size = new System.Drawing.Size(132, 22);
+            this.openMenu.Size = new System.Drawing.Size(152, 22);
             this.openMenu.Text = "Открыть";
             this.openMenu.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
@@ -117,13 +118,13 @@
             // 
             this.saveMenu.Enabled = false;
             this.saveMenu.Name = "saveMenu";
-            this.saveMenu.Size = new System.Drawing.Size(132, 22);
+            this.saveMenu.Size = new System.Drawing.Size(152, 22);
             this.saveMenu.Text = "Сохранить";
             // 
             // выйтиToolStripMenuItem
             // 
             this.выйтиToolStripMenuItem.Name = "выйтиToolStripMenuItem";
-            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.выйтиToolStripMenuItem.Text = "Выйти";
             this.выйтиToolStripMenuItem.Click += new System.EventHandler(this.выйтиToolStripMenuItem_Click);
             // 
@@ -131,8 +132,8 @@
             // 
             this.настройкиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.параметрыSqlServerToolStripMenuItem,
-            this.добавитьПользователяToolStripMenuItem,
-            this.рекдактироватьПользователейToolStripMenuItem});
+            this.addUserMenu,
+            this.EditUsersMenu});
             this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
             this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.настройкиToolStripMenuItem.Text = "Настройки";
@@ -144,19 +145,19 @@
             this.параметрыSqlServerToolStripMenuItem.Text = "Параметры";
             this.параметрыSqlServerToolStripMenuItem.Click += new System.EventHandler(this.параметрыSqlServerToolStripMenuItem_Click);
             // 
-            // добавитьПользователяToolStripMenuItem
+            // addUserMenu
             // 
-            this.добавитьПользователяToolStripMenuItem.Name = "добавитьПользователяToolStripMenuItem";
-            this.добавитьПользователяToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
-            this.добавитьПользователяToolStripMenuItem.Text = "Добавить пользователя";
-            this.добавитьПользователяToolStripMenuItem.Click += new System.EventHandler(this.добавитьПользователяToolStripMenuItem_Click);
+            this.addUserMenu.Name = "addUserMenu";
+            this.addUserMenu.Size = new System.Drawing.Size(245, 22);
+            this.addUserMenu.Text = "Добавить пользователя";
+            this.addUserMenu.Click += new System.EventHandler(this.добавитьПользователяToolStripMenuItem_Click);
             // 
-            // рекдактироватьПользователейToolStripMenuItem
+            // EditUsersMenu
             // 
-            this.рекдактироватьПользователейToolStripMenuItem.Name = "рекдактироватьПользователейToolStripMenuItem";
-            this.рекдактироватьПользователейToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
-            this.рекдактироватьПользователейToolStripMenuItem.Text = "Рекдактировать пользователей";
-            this.рекдактироватьПользователейToolStripMenuItem.Click += new System.EventHandler(this.рекдактироватьПользователейToolStripMenuItem_Click);
+            this.EditUsersMenu.Name = "EditUsersMenu";
+            this.EditUsersMenu.Size = new System.Drawing.Size(245, 22);
+            this.EditUsersMenu.Text = "Рекдактировать пользователей";
+            this.EditUsersMenu.Click += new System.EventHandler(this.рекдактироватьПользователейToolStripMenuItem_Click);
             // 
             // loginMenu
             // 
@@ -183,17 +184,19 @@
             this.ClientSize = new System.Drawing.Size(820, 479);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.myMenu);
+            this.MainMenuStrip = this.myMenu;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MainForm";
+            this.Text = "StampTracker";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Activated += new System.EventHandler(this.MainForm_Activated);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Enter += new System.EventHandler(this.MainForm_Enter);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.myMenu.ResumeLayout(false);
+            this.myMenu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -203,7 +206,7 @@
 
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel loginStripLabel;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip myMenu;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createMenu;
         private System.Windows.Forms.ToolStripMenuItem openMenu;
@@ -215,7 +218,7 @@
         private System.Windows.Forms.ToolStripStatusLabel ConnectionStripLabel;
         private System.Windows.Forms.ToolStripMenuItem loginMenu;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ToolStripMenuItem добавитьПользователяToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem рекдактироватьПользователейToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addUserMenu;
+        private System.Windows.Forms.ToolStripMenuItem EditUsersMenu;
     }
 }

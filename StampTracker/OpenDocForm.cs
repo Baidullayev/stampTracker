@@ -37,19 +37,46 @@ namespace StampTracker
             //        Console.WriteLine();
             //    }
             //}
-
-
-
-
         }
 
-        private void button6_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void button7_Click(object sender, EventArgs e)
+        private void OpenDocForm_Load(object sender, EventArgs e)
         {
+            listView1.View = View.Details;
+            listView1.GridLines = true;
+            listView1.FullRowSelect = true;
+            
+            listView1.Columns.Add("Наименование", 100);
+            listView1.Columns.Add("Дата создания", 70);
+            listView1.Columns.Add("ID", 70);
+            //int count;
+
+            using (SqlConnection con = new SqlConnection(MainForm.connectionString))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("select * from documents", con);
+                SqlDataReader reader = cmd.ExecuteReader();
+                
+                //DataTable dt = new DataTable();
+                //dt.Load(reader);
+                //count = dt.Rows.Count;
+                string[] arr = new string[3];
+                while (reader.Read())
+                {
+                    ListViewItem itm;
+                    arr[0] = reader["name"].ToString();
+                    arr[1] = reader["createdDate"].ToString();
+                    arr[2] = reader["docID"].ToString();
+                                      
+                    itm = new ListViewItem(arr);
+                    listView1.Items.Add(itm);
+                }
+            }
+
+
+
+
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 
         }
     }

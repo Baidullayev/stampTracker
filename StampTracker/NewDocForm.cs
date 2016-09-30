@@ -88,6 +88,7 @@ namespace StampTracker
 
         private void viewDocButton_Click(object sender, EventArgs e)
         {
+                        
             System.Diagnostics.Process.Start(@docBox.Text);
         }
 
@@ -133,17 +134,58 @@ namespace StampTracker
                                     string scannedFileCheckSum = calculatorMD5.getFileHash(scannedDocFileStream);
                                     string scannedFileExtension = Path.GetExtension(scannedFilePath);
 
+
                                     using (SqlCommand cmd3 = new SqlCommand("select docID, name from documents where checksumDocFIle=@checksumDocFIle or checksumScannedFile=@checksumScannedFile ", con))
                                     {
+                                        cmd3.Parameters.AddWithValue("@checkSumDocFile", docFileCheckSum);
+                                        cmd3.Parameters.AddWithValue("@checksumScannedFile", scannedFileCheckSum);
                                         using (SqlDataReader reader2 = cmd3.ExecuteReader())
                                         {
+                                            List<String> tempList = new List<String>();
+
                                             if(reader2.HasRows)
                                             {
+                                                while (reader2.HasRows)
+                                                {
+                                                    while (reader2.Read())
+                                                    {
+                                                        tempList.Add(reader2.GetString(1));
+                                                    }
+                                                    reader2.NextResult();
+                                                }
+                                                string tempString="";
+                                                foreach(string ss in tempList)
+                                                {
+                                                    tempString += ss + ", "; 
+                                                }
+                                                var result = MessageBox.Show("Минимум один из прикрепленных файлов уже имееться в следующих записах: " + tempString + "сохранить все равно?","информация", MessageBoxButtons.YesNo);
+                                                if(result == DialogResult.Yes)
+                                                {
+                                                    reader2.Close();
+                                                    scannedDocFileStream.Read(scannedDocFileContent, 0, (int)scannedDocFileStream.Length);
+                                                    scannedDocFileStream.Close();
 
+                                                    using (SqlCommand cmd = new SqlCommand("insert into documents values(@name, @date,@doc, @scannedDoc, @checkSumOriginal, @checkSumScanned, @docFileExt, @scannedFileExt)", con))
+                                                    {
+                                                        cmd.Parameters.AddWithValue("@name", newDocName);
+                                                        DateTime utcDate = DateTime.UtcNow;
+                                                        cmd.Parameters.AddWithValue("@date", utcDate);
+                                                        cmd.Parameters.AddWithValue("@doc", docFileContent);
+                                                        cmd.Parameters.AddWithValue("@scannedDoc", scannedDocFileContent);
+                                                        cmd.Parameters.AddWithValue("@checkSumOriginal", docFileCheckSum);
+                                                        cmd.Parameters.AddWithValue("@checkSumScanned", scannedFileCheckSum);
+                                                        cmd.Parameters.AddWithValue("@docFIleExt", docFileExtension);
+                                                        cmd.Parameters.AddWithValue("@scannedFileExt", scannedFileExtension);
+                                                        cmd.ExecuteNonQuery();
+                                                        MessageBox.Show("Новый документ создан успешно!");
+                                                    }
+                                                }
                                                 //I stopped here
-                                            }
+                                            }                                 
+
+
                                             else
-                                            {
+                                            {                                       
                                                 reader2.Close();
                                                 scannedDocFileStream.Read(scannedDocFileContent, 0, (int)scannedDocFileStream.Length);
                                                 scannedDocFileStream.Close();
