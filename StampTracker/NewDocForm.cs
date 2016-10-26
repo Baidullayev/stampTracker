@@ -121,15 +121,20 @@ namespace StampTracker
                                     CalculatorMD5 calculatorMD5 = new CalculatorMD5();
 
                                     FileStream docFileStream = File.OpenRead(docFilePath);
-                                    byte[] docFileContent = new byte[docFileStream.Length];
+                                    BinaryReader rdr = new BinaryReader(docFileStream);
+                                    byte[] docFileContent = rdr.ReadBytes((int)docFileStream.Length);
                                     string docFileCheckSum = calculatorMD5.getFileHash(docFileStream);
+  
+
                                     string docFileExtension = Path.GetExtension(docFilePath);
 
                                     docFileStream.Read(docFileContent, 0, (int)docFileStream.Length);
-                                    docFileStream.Close();
+                                    
 
                                     FileStream scannedDocFileStream = File.OpenRead(scannedFilePath);
-                                    byte[] scannedDocFileContent = new byte[scannedDocFileStream.Length];
+                                    BinaryReader rdr2 = new BinaryReader(scannedDocFileStream);
+                                    byte[] scannedDocFileContent = rdr2.ReadBytes((int)scannedDocFileStream.Length);
+
 
                                     string scannedFileCheckSum = calculatorMD5.getFileHash(scannedDocFileStream);
                                     string scannedFileExtension = Path.GetExtension(scannedFilePath);
@@ -170,7 +175,9 @@ namespace StampTracker
                                                         cmd.Parameters.AddWithValue("@name", newDocName);
                                                         DateTime utcDate = DateTime.UtcNow;
                                                         cmd.Parameters.AddWithValue("@date", utcDate);
-                                                        cmd.Parameters.AddWithValue("@doc", docFileContent);
+                                                        //cmd.Parameters.AddWithValue("@doc", docFileContent);
+                                                        cmd.Parameters.Add("@doc", SqlDbType.Binary, docFileContent.Length).Value = docFileContent;
+
                                                         cmd.Parameters.AddWithValue("@scannedDoc", scannedDocFileContent);
                                                         cmd.Parameters.AddWithValue("@checkSumOriginal", docFileCheckSum);
                                                         cmd.Parameters.AddWithValue("@checkSumScanned", scannedFileCheckSum);
@@ -186,7 +193,7 @@ namespace StampTracker
 
                                             else
                                             {                                       
-                                                reader2.Close();
+                                               reader2.Close();
                                                 scannedDocFileStream.Read(scannedDocFileContent, 0, (int)scannedDocFileStream.Length);
                                                 scannedDocFileStream.Close();
 
@@ -207,8 +214,10 @@ namespace StampTracker
                                             }
                                         }
                                     }
-
-
+                                    rdr.Close();
+                                    docFileStream.Close();
+                                    rdr2.Close();
+                                    scannedDocFileStream.Close();              
 
                                 }
 

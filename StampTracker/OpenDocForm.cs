@@ -79,5 +79,21 @@ namespace StampTracker
             listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                nameBox.Text = listView1.SelectedItems[0].SubItems[0].Text;
+                dateBox.Text = listView1.SelectedItems[0].SubItems[1].Text;
+                hidden_id_label.Text = listView1.SelectedItems[0].SubItems[2].Text;
+            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
