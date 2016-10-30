@@ -115,18 +115,6 @@ namespace StampTracker
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-       
-            //ToolStripMenuItem item1 = new ToolStripMenuItem();
-            //item1.Text = "выйти";
-            //loginMenu.DropDownItems.Add(item1);
-            //currentUser = new User();
-            //currentUser = null;
-            //if (currentUser == null)
-            //{
-            //    MessageBox.Show("Null");
-            //}
-            //else MessageBox.Show("User has instablished");
-        
 
         }
 

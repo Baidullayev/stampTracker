@@ -43,7 +43,6 @@
             this.addUserMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.EditUsersMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.loginMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.myMenu.SuspendLayout();
             this.SuspendLayout();
@@ -103,14 +102,14 @@
             // createMenu
             // 
             this.createMenu.Name = "createMenu";
-            this.createMenu.Size = new System.Drawing.Size(152, 22);
+            this.createMenu.Size = new System.Drawing.Size(132, 22);
             this.createMenu.Text = "Создать";
             this.createMenu.Click += new System.EventHandler(this.создатьToolStripMenuItem_Click);
             // 
             // openMenu
             // 
             this.openMenu.Name = "openMenu";
-            this.openMenu.Size = new System.Drawing.Size(152, 22);
+            this.openMenu.Size = new System.Drawing.Size(132, 22);
             this.openMenu.Text = "Открыть";
             this.openMenu.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
@@ -118,13 +117,13 @@
             // 
             this.saveMenu.Enabled = false;
             this.saveMenu.Name = "saveMenu";
-            this.saveMenu.Size = new System.Drawing.Size(152, 22);
+            this.saveMenu.Size = new System.Drawing.Size(132, 22);
             this.saveMenu.Text = "Сохранить";
             // 
             // выйтиToolStripMenuItem
             // 
             this.выйтиToolStripMenuItem.Name = "выйтиToolStripMenuItem";
-            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.выйтиToolStripMenuItem.Text = "Выйти";
             this.выйтиToolStripMenuItem.Click += new System.EventHandler(this.выйтиToolStripMenuItem_Click);
             // 
@@ -167,22 +166,11 @@
             this.loginMenu.Text = "Войти";
             this.loginMenu.Click += new System.EventHandler(this.loginMenu_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(209, 219);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(820, 479);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.myMenu);
             this.MainMenuStrip = this.myMenu;
@@ -217,7 +205,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel ConnectionStripLabel;
         private System.Windows.Forms.ToolStripMenuItem loginMenu;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem addUserMenu;
         private System.Windows.Forms.ToolStripMenuItem EditUsersMenu;
     }
