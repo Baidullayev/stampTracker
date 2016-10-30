@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.hidden_id_label = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -41,12 +42,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.hidden_id_label = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button7);
+            this.groupBox1.Controls.Add(this.button6);
+            this.groupBox1.Controls.Add(this.button5);
             this.groupBox1.Controls.Add(this.hidden_id_label);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button3);
@@ -60,10 +66,20 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(9, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(370, 316);
+            this.groupBox1.Size = new System.Drawing.Size(482, 316);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Инфармация";
+            // 
+            // hidden_id_label
+            // 
+            this.hidden_id_label.AutoSize = true;
+            this.hidden_id_label.Location = new System.Drawing.Point(6, 166);
+            this.hidden_id_label.Name = "hidden_id_label";
+            this.hidden_id_label.Size = new System.Drawing.Size(35, 13);
+            this.hidden_id_label.TabIndex = 17;
+            this.hidden_id_label.Text = "empty";
+            this.hidden_id_label.Visible = false;
             // 
             // button4
             // 
@@ -91,6 +107,7 @@
             this.button2.TabIndex = 14;
             this.button2.Text = "указать другой";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -124,9 +141,9 @@
             // dateBox
             // 
             this.dateBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateBox.Location = new System.Drawing.Point(160, 42);
+            this.dateBox.Location = new System.Drawing.Point(299, 42);
             this.dateBox.Name = "dateBox";
-            this.dateBox.Size = new System.Drawing.Size(204, 20);
+            this.dateBox.Size = new System.Drawing.Size(177, 20);
             this.dateBox.TabIndex = 10;
             // 
             // label2
@@ -144,7 +161,7 @@
             this.nameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nameBox.Location = new System.Drawing.Point(160, 16);
             this.nameBox.Name = "nameBox";
-            this.nameBox.Size = new System.Drawing.Size(204, 20);
+            this.nameBox.Size = new System.Drawing.Size(316, 20);
             this.nameBox.TabIndex = 8;
             // 
             // label1
@@ -159,34 +176,56 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(385, 25);
+            this.textBox3.Location = new System.Drawing.Point(497, 25);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(466, 20);
             this.textBox3.TabIndex = 11;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // listView1
             // 
-            this.listView1.Location = new System.Drawing.Point(385, 55);
+            this.listView1.Location = new System.Drawing.Point(497, 51);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(462, 274);
+            this.listView1.Size = new System.Drawing.Size(466, 274);
             this.listView1.TabIndex = 12;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
-            // hidden_id_label
+            // button5
             // 
-            this.hidden_id_label.AutoSize = true;
-            this.hidden_id_label.Location = new System.Drawing.Point(6, 166);
-            this.hidden_id_label.Name = "hidden_id_label";
-            this.hidden_id_label.Size = new System.Drawing.Size(35, 13);
-            this.hidden_id_label.TabIndex = 17;
-            this.hidden_id_label.Text = "empty";
+            this.button5.Location = new System.Drawing.Point(370, 79);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(106, 23);
+            this.button5.TabIndex = 18;
+            this.button5.Text = "Сохранить как";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(370, 106);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(106, 23);
+            this.button6.TabIndex = 19;
+            this.button6.Text = "Сохранить как";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(370, 161);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(106, 23);
+            this.button7.TabIndex = 20;
+            this.button7.Text = "удалить документ";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // OpenDocForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(859, 594);
+            this.ClientSize = new System.Drawing.Size(985, 594);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.groupBox1);
@@ -216,5 +255,8 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label hidden_id_label;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
     }
 }
