@@ -124,18 +124,13 @@ namespace StampTracker
                                     BinaryReader rdr = new BinaryReader(docFileStream);
                                     byte[] docFileContent = rdr.ReadBytes((int)docFileStream.Length);
                                     string docFileCheckSum = calculatorMD5.getFileHash(docFileStream);
-  
-
                                     string docFileExtension = Path.GetExtension(docFilePath);
-
                                     docFileStream.Read(docFileContent, 0, (int)docFileStream.Length);
                                     
 
                                     FileStream scannedDocFileStream = File.OpenRead(scannedFilePath);
                                     BinaryReader rdr2 = new BinaryReader(scannedDocFileStream);
                                     byte[] scannedDocFileContent = rdr2.ReadBytes((int)scannedDocFileStream.Length);
-
-
                                     string scannedFileCheckSum = calculatorMD5.getFileHash(scannedDocFileStream);
                                     string scannedFileExtension = Path.GetExtension(scannedFilePath);
 
@@ -174,10 +169,8 @@ namespace StampTracker
                                                     {
                                                         cmd.Parameters.AddWithValue("@name", newDocName);
                                                         DateTime utcDate = DateTime.UtcNow;
-                                                        cmd.Parameters.AddWithValue("@date", utcDate);
-                                                        //cmd.Parameters.AddWithValue("@doc", docFileContent);
+                                                        cmd.Parameters.AddWithValue("@date", utcDate);                                                        
                                                         cmd.Parameters.Add("@doc", SqlDbType.Binary, docFileContent.Length).Value = docFileContent;
-
                                                         cmd.Parameters.AddWithValue("@scannedDoc", scannedDocFileContent);
                                                         cmd.Parameters.AddWithValue("@checkSumOriginal", docFileCheckSum);
                                                         cmd.Parameters.AddWithValue("@checkSumScanned", scannedFileCheckSum);

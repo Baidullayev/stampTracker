@@ -57,12 +57,9 @@ namespace StampTracker
             {
                 try
                 {
-                    String str = "server=" + serverName + "\\" + instanceName + ";database=" + dbName + ";UID=" + loginSql + ";password=" + passwordSql;
-                    //String query = "select * from users";
+                    String str = "server=" + serverName + "\\" + instanceName + ";database=" + dbName + ";UID=" + loginSql + ";password=" + passwordSql;           
                     SqlConnection con = new SqlConnection(str);
-                   // SqlCommand cmd = new SqlCommand(query, con);
                     con.Open();
-                    //DataSet ds = new DataSet();
                     ConnectionStripLabel.Text = "Соединение с БД установлено";                //   
                     con.Close();
                     connectionString = str;

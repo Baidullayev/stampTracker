@@ -112,7 +112,7 @@ namespace StampTracker
             }
         }
 
-        public void fillingListView(string searchingArg = "*")
+        public void fillingListView(string searchingArg = "*", string uniqueSearch = "*")
         {
             listView1.Clear();
             listView1.View = View.Details;
@@ -137,7 +137,31 @@ namespace StampTracker
                     cmd.Parameters.AddWithValue("@searchingArg", "%" + searchingArg + "%");
                     cmd.CommandText = command;
                 }
-                
+
+                if(uniqueSearch != "*")
+                {
+                    if(uniqueSearch == "last 10")
+                    {
+                        command = "select TOP 10 * from documents";                        
+                        cmd.CommandText = command;
+                    }
+                    else if(uniqueSearch == "for day")
+                    {
+                        command = "select * from documents where DATEDIFF(day, documents.createdDate ,GETDATE()) = 0 ";
+                        cmd.CommandText = command;
+                    }
+                    else if(uniqueSearch == "last week")
+                    {
+                        command = "select * from documents where DATEDIFF(day, documents.createdDate ,GETDATE()) = 7 ";
+                        cmd.CommandText = command;
+                    }
+                    else if(uniqueSearch == "last month")
+                    {
+                        command = "select * from documents where DATEDIFF(day, documents.createdDate ,GETDATE()) = 30 ";
+                        cmd.CommandText = command;
+                    }
+
+                }
                     SqlDataReader reader = cmd.ExecuteReader();
                     string[] arr = new string[5];
                     while (reader.Read())
@@ -179,9 +203,11 @@ namespace StampTracker
             {
                 con.Open();
                 SqlCommand cmd;
+                SaveFileDialog savefile = new SaveFileDialog();
                 if (docType == "scannedDocFile")
                 {
                     cmd = new SqlCommand("select scannedDocFile, scannedFileExt from documents where docID=@id", con);
+                    
                 }
                 else cmd = new SqlCommand("select DocFile, docFileExt from documents where docID=@id", con);
                 string id = hidden_id_label.Text;
@@ -195,12 +221,18 @@ namespace StampTracker
                     if (docType == "scannedDocFile")
                     {
                         extension = reader["scannedFIleExt"].ToString();
+                        savefile.FileName = nameBox.Text + " - отсканированный" + extension;
                     }
-                    else extension = reader["docFIleExt"].ToString();
+                    else
+                    {
+                        extension = reader["docFIleExt"].ToString();
+                        savefile.FileName = nameBox.Text + extension;
+                    }
 
                     reader.GetBytes(0, 0, blob, 0, blob.Length);
-                    SaveFileDialog savefile = new SaveFileDialog();
-                    savefile.Filter = "Files as |*" + extension;
+                    
+                    savefile.Filter = "Files as  " + extension + " |*" + extension;
+                    
                     if (savefile.ShowDialog() == DialogResult.OK)
                     {
                         using (var fs = new FileStream(savefile.FileName, FileMode.Create, FileAccess.Write))
@@ -270,30 +302,125 @@ namespace StampTracker
                 using (SqlConnection con = new SqlConnection(MainForm.connectionString))
                 {
                     con.Open();
-                    SqlCommand cmd = new SqlCommand();
+                    SqlCommand cmd = new SqlCommand("select docID from documents where name = @docName");
+                    cmd.Parameters.AddWithValue("@docName",nameBox.Text);
                     cmd.Connection = con;
-                    if (newDocPathBox.Text != "" && newScannedDocPathBox.Text != "")
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        cmd.CommandText = "update documents set name='@name', docFile=@docFile, scannedDocFile = @scannedDocFile, checkSumDocFIle=@checkSumDocFIle, checksumScannedFile=@checksumScannedFile, docFileExt=@docFileExt, scannedFileExt=@scannedFileExt where docID=@id";
-                    }
-                    else if (newDocPathBox.Text != "" && newScannedDocPathBox.Text == "")
-                    {
-                        cmd.CommandText = "update documents set name='@name', docFile=@docFile, checkSumDocFIle=@checkSumDocFIle, docFileExt=@docFileExt where docID=@id";
-                    }
-                    else if (newDocPathBox.Text == "" && newScannedDocPathBox.Text != "")
-                    {
-                        cmd.CommandText = "update documents set name='@name', scannedDocFile = @scannedDocFile,  checksumScannedFile=@checksumScannedFile,  scannedFileExt=@scannedFileExt where docID=@id";
-                    }
-                    else cmd.CommandText = "update documents set name='@name' where docID=@id";
+                        
+                        if(false) //if (reader.HasRows)
+                        {
+                            //MessageBox.Show("Документ с таким именем уже существует");
+                            //reader.Close();
+                        }
+                        else
+                        {
+                            reader.Close();
+                            CalculatorMD5 calculatorMD5 = new CalculatorMD5();
+                            if (newDocPathBox.Text != "" && newScannedDocPathBox.Text != "")
+                            {
+                                //cmd.CommandText = "update documents set name='@name', docFile=@docFile, scannedDocFile = @scannedDocFile, checkSumDocFIle=@checkSumDocFIle, checksumScannedFile=@checksumScannedFile, docFileExt=@docFileExt, scannedFileExt=@scannedFileExt where docID=@id";
 
-                    string id = hidden_id_label.Text;
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
-                    nameBox.Text = "";
-                    dateBox.Text = "";
-                    hidden_id_label.Text = "empty";
 
-                    fillingListView();
+                                FileStream docFileStream = File.OpenRead(newDocPathBox.Text);
+                                BinaryReader binrdr = new BinaryReader(docFileStream);
+                                byte[] docFileContent = binrdr.ReadBytes((int)docFileStream.Length);
+                                string docFileCheckSum = calculatorMD5.getFileHash(docFileStream);
+                                string docFileExtension = Path.GetExtension(newDocPathBox.Text);
+                                docFileStream.Read(docFileContent, 0, (int)docFileStream.Length);
+
+                                FileStream scannedDocFileStream = File.OpenRead(newScannedDocPathBox.Text);
+                                BinaryReader rdr2 = new BinaryReader(scannedDocFileStream);
+                                byte[] scannedDocFileContent = rdr2.ReadBytes((int)scannedDocFileStream.Length);
+                                string scannedFileCheckSum = calculatorMD5.getFileHash(scannedDocFileStream);
+                                string scannedFileExtension = Path.GetExtension(newScannedDocPathBox.Text);
+                                scannedDocFileStream.Read(scannedDocFileContent, 0, (int)scannedDocFileStream.Length);
+
+                                using (cmd = new SqlCommand("update documents set name = @name, docFile = @docFile, scannedDocFile = @scannedDocFile, checkSumDocFIle = @checkSumDocFIle, checksumScannedFile = @checksumScannedFile, docFileExt = @docFileExt, scannedFileExt = @scannedFileExt where docID = @id", con))
+                                {
+                                    cmd.Parameters.AddWithValue("@id", hidden_id_label.Text);
+                                    cmd.Parameters.AddWithValue("@name", nameBox.Text);
+                                    cmd.Parameters.Add("@docFile", SqlDbType.Binary, docFileContent.Length).Value = docFileContent;
+                                    cmd.Parameters.AddWithValue("@scannedDocFile", scannedDocFileContent);
+                                    cmd.Parameters.AddWithValue("@checkSumDocFIle", docFileCheckSum);
+                                    cmd.Parameters.AddWithValue("@checksumScannedFile", scannedFileCheckSum);
+                                    cmd.Parameters.AddWithValue("@docFileExt", docFileExtension);
+                                    cmd.Parameters.AddWithValue("@scannedFileExt", scannedFileExtension);
+                                    cmd.ExecuteNonQuery();
+                                    MessageBox.Show("Документ успешно сохранен!");
+                                }
+
+
+                            }
+                            else if (newDocPathBox.Text != "" && newScannedDocPathBox.Text == "")
+                            {
+                                //cmd.CommandText = "update documents set name=@name, docFile=@docFile, checkSumDocFIle=@checkSumDocFIle, docFileExt=@docFileExt where docID=@id";
+                                reader.Close();
+
+                                FileStream docFileStream = File.OpenRead(newDocPathBox.Text);
+                                BinaryReader binrdr = new BinaryReader(docFileStream);
+                                byte[] docFileContent = binrdr.ReadBytes((int)docFileStream.Length);
+                                string docFileCheckSum = calculatorMD5.getFileHash(docFileStream);
+                                string docFileExtension = Path.GetExtension(newDocPathBox.Text);
+                                docFileStream.Read(docFileContent, 0, (int)docFileStream.Length);
+
+                                using (cmd = new SqlCommand("update documents set name=@name, docFile=@docFile, checkSumDocFIle=@checkSumDocFIle, docFileExt=@docFileExt where docID=@id", con))
+                                {
+                                    cmd.Parameters.AddWithValue("@id", hidden_id_label.Text);
+                                    cmd.Parameters.AddWithValue("@name", nameBox.Text);
+                                    cmd.Parameters.Add("@docFile", SqlDbType.Binary, docFileContent.Length).Value = docFileContent;
+                                    cmd.Parameters.AddWithValue("@checkSumDocFIle", docFileCheckSum);
+                                    cmd.Parameters.AddWithValue("@docFileExt", docFileExtension);
+                                    cmd.ExecuteNonQuery();
+                                    MessageBox.Show("Документ успешно сохранен!");
+                                }
+                            }
+                            else if (newDocPathBox.Text == "" && newScannedDocPathBox.Text != "")
+                            {
+                                //cmd.CommandText = "update documents set name=@name, scannedDocFile = @scannedDocFile,  checksumScannedFile=@checksumScannedFile,  scannedFileExt=@scannedFileExt where docID=@id";
+                                FileStream scannedDocFileStream = File.OpenRead(newScannedDocPathBox.Text);
+                                BinaryReader rdr2 = new BinaryReader(scannedDocFileStream);
+                                byte[] scannedDocFileContent = rdr2.ReadBytes((int)scannedDocFileStream.Length);
+                                string scannedFileCheckSum = calculatorMD5.getFileHash(scannedDocFileStream);
+                                string scannedFileExtension = Path.GetExtension(newScannedDocPathBox.Text);
+                                scannedDocFileStream.Read(scannedDocFileContent, 0, (int)scannedDocFileStream.Length);
+
+                                using (cmd = new SqlCommand("update documents set name=@name, scannedDocFile = @scannedDocFile,  checksumScannedFile=@checksumScannedFile,  scannedFileExt=@scannedFileExt where docID=@id", con))
+                                {
+                                    cmd.Parameters.AddWithValue("@id", hidden_id_label.Text);
+                                    cmd.Parameters.AddWithValue("@name", nameBox.Text);
+                                    cmd.Parameters.AddWithValue("@scannedDocFile", scannedDocFileContent);
+                                    cmd.Parameters.AddWithValue("@checksumScannedFile", scannedFileCheckSum);
+                                    cmd.Parameters.AddWithValue("@scannedFileExt", scannedFileExtension);
+                                    cmd.ExecuteNonQuery();
+                                    MessageBox.Show("Документ успешно сохранен!");
+                                }
+                            }
+                            else
+                            {
+                                cmd.CommandText = "update documents set name=@name where docID=@id";
+                                string id = hidden_id_label.Text;
+                                cmd.Parameters.AddWithValue("@id", id);
+                                cmd.Parameters.AddWithValue("@name", nameBox.Text);
+                                cmd.ExecuteNonQuery();
+                                MessageBox.Show("Документ успешно сохранен!");
+                            }
+
+
+                            fillingListView();
+                            nameBox.Text = "";
+                            dateBox.Text = "";
+                            hidden_id_label.Text = "empty";
+                            newDocPathBox.Text = "";
+                            newScannedDocPathBox.Text = "";
+                            docFileExtLabel.Text = "Расширение файла:";
+                            scannedFileExt.Text = "Расширение файла:";
+                            fillingListView();
+
+
+                        }
+                    }
+
                 }
             }
         }
@@ -337,7 +464,30 @@ namespace StampTracker
             saveChangedDoc();
         }
 
-        
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selIndex = comboBox1.SelectedIndex;
+            if(selIndex == 0)
+            {
+                fillingListView(uniqueSearch: "last 10");
+            }
+            else if(selIndex == 1)
+            {
+                fillingListView(uniqueSearch: "for day");
+            }
+            else if (selIndex == 2)
+            {
+                fillingListView(uniqueSearch: "last week");
+            }
+            else if (selIndex == 3)
+            {
+                fillingListView(uniqueSearch: "last month");
+            }
+            else if (selIndex == 4)
+            {
+                fillingListView(uniqueSearch: "all");
+            }
+        }
     }
 
 }

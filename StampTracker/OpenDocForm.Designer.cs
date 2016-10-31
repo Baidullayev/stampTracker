@@ -29,13 +29,20 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.scannedFileExt = new System.Windows.Forms.Label();
+            this.newScannedDocPathBox = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.docFileExtLabel = new System.Windows.Forms.Label();
+            this.newDocPathBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.dateBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.nameBox = new System.Windows.Forms.TextBox();
@@ -43,17 +50,10 @@
             this.hidden_id_label = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.newScannedDocPathBox = new System.Windows.Forms.TextBox();
-            this.newDocPathBox = new System.Windows.Forms.TextBox();
-            this.button8 = new System.Windows.Forms.Button();
-            this.docFileExtLabel = new System.Windows.Forms.Label();
-            this.scannedFileExt = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -73,45 +73,49 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Инфармация";
             // 
-            // button7
+            // button8
             // 
-            this.button7.Location = new System.Drawing.Point(357, 330);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(106, 23);
-            this.button7.TabIndex = 20;
-            this.button7.Text = "Удалить документ";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.button8.Location = new System.Drawing.Point(242, 330);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(109, 23);
+            this.button8.TabIndex = 23;
+            this.button8.Text = "Сохранить";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
-            // button6
+            // groupBox3
             // 
-            this.button6.Location = new System.Drawing.Point(15, 89);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(188, 23);
-            this.button6.TabIndex = 19;
-            this.button6.Text = "Сохранить как";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.groupBox3.Controls.Add(this.scannedFileExt);
+            this.groupBox3.Controls.Add(this.newScannedDocPathBox);
+            this.groupBox3.Controls.Add(this.button3);
+            this.groupBox3.Controls.Add(this.button4);
+            this.groupBox3.Controls.Add(this.button6);
+            this.groupBox3.Location = new System.Drawing.Point(242, 84);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(221, 226);
+            this.groupBox3.TabIndex = 22;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Отсканированный вариант";
             // 
-            // button5
+            // scannedFileExt
             // 
-            this.button5.Location = new System.Drawing.Point(15, 89);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(196, 23);
-            this.button5.TabIndex = 18;
-            this.button5.Text = "Сохранить как";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            this.scannedFileExt.AutoSize = true;
+            this.scannedFileExt.Location = new System.Drawing.Point(12, 57);
+            this.scannedFileExt.Name = "scannedFileExt";
+            this.scannedFileExt.Size = new System.Drawing.Size(108, 13);
+            this.scannedFileExt.TabIndex = 23;
+            this.scannedFileExt.Text = "Расширение файла:";
             // 
-            // button4
+            // newScannedDocPathBox
             // 
-            this.button4.Location = new System.Drawing.Point(15, 118);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(188, 23);
-            this.button4.TabIndex = 16;
-            this.button4.Text = "Указать другой файл";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.newScannedDocPathBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.newScannedDocPathBox.Location = new System.Drawing.Point(15, 147);
+            this.newScannedDocPathBox.Name = "newScannedDocPathBox";
+            this.newScannedDocPathBox.ReadOnly = true;
+            this.newScannedDocPathBox.Size = new System.Drawing.Size(188, 20);
+            this.newScannedDocPathBox.TabIndex = 20;
+            this.newScannedDocPathBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.newScannedDocPathBox_MouseClick);
+            this.newScannedDocPathBox.TextChanged += new System.EventHandler(this.newScannedDocPathBox_TextChanged);
             // 
             // button3
             // 
@@ -123,15 +127,59 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button2
+            // button4
             // 
-            this.button2.Location = new System.Drawing.Point(15, 118);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(196, 23);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "Указать другой файл";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button4.Location = new System.Drawing.Point(15, 118);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(188, 23);
+            this.button4.TabIndex = 16;
+            this.button4.Text = "Указать другой файл";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(15, 89);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(188, 23);
+            this.button6.TabIndex = 19;
+            this.button6.Text = "Сохранить как";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.docFileExtLabel);
+            this.groupBox2.Controls.Add(this.newDocPathBox);
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.button5);
+            this.groupBox2.Location = new System.Drawing.Point(9, 84);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(227, 226);
+            this.groupBox2.TabIndex = 21;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Основной документ";
+            // 
+            // docFileExtLabel
+            // 
+            this.docFileExtLabel.AutoSize = true;
+            this.docFileExtLabel.Location = new System.Drawing.Point(12, 57);
+            this.docFileExtLabel.Name = "docFileExtLabel";
+            this.docFileExtLabel.Size = new System.Drawing.Size(108, 13);
+            this.docFileExtLabel.TabIndex = 22;
+            this.docFileExtLabel.Text = "Расширение файла:";
+            // 
+            // newDocPathBox
+            // 
+            this.newDocPathBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.newDocPathBox.Location = new System.Drawing.Point(15, 147);
+            this.newDocPathBox.Name = "newDocPathBox";
+            this.newDocPathBox.ReadOnly = true;
+            this.newDocPathBox.Size = new System.Drawing.Size(196, 20);
+            this.newDocPathBox.TabIndex = 21;
+            this.newDocPathBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.newDocPathBox_MouseClick);
+            this.newDocPathBox.TextChanged += new System.EventHandler(this.newDocPathBox_TextChanged);
             // 
             // button1
             // 
@@ -142,6 +190,36 @@
             this.button1.Text = "Просмотр";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(15, 118);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(196, 23);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "Указать другой файл";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(15, 89);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(196, 23);
+            this.button5.TabIndex = 18;
+            this.button5.Text = "Сохранить как";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(357, 330);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(106, 23);
+            this.button7.TabIndex = 20;
+            this.button7.Text = "Удалить документ";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // dateBox
             // 
@@ -207,84 +285,6 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.docFileExtLabel);
-            this.groupBox2.Controls.Add(this.newDocPathBox);
-            this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Controls.Add(this.button5);
-            this.groupBox2.Location = new System.Drawing.Point(9, 84);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(227, 226);
-            this.groupBox2.TabIndex = 21;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Основной документ";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.scannedFileExt);
-            this.groupBox3.Controls.Add(this.newScannedDocPathBox);
-            this.groupBox3.Controls.Add(this.button3);
-            this.groupBox3.Controls.Add(this.button4);
-            this.groupBox3.Controls.Add(this.button6);
-            this.groupBox3.Location = new System.Drawing.Point(242, 84);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(221, 226);
-            this.groupBox3.TabIndex = 22;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Отсканированный вариант";
-            // 
-            // newScannedDocPathBox
-            // 
-            this.newScannedDocPathBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.newScannedDocPathBox.Location = new System.Drawing.Point(15, 147);
-            this.newScannedDocPathBox.Name = "newScannedDocPathBox";
-            this.newScannedDocPathBox.ReadOnly = true;
-            this.newScannedDocPathBox.Size = new System.Drawing.Size(188, 20);
-            this.newScannedDocPathBox.TabIndex = 20;
-            this.newScannedDocPathBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.newScannedDocPathBox_MouseClick);
-            this.newScannedDocPathBox.TextChanged += new System.EventHandler(this.newScannedDocPathBox_TextChanged);
-            // 
-            // newDocPathBox
-            // 
-            this.newDocPathBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.newDocPathBox.Location = new System.Drawing.Point(15, 147);
-            this.newDocPathBox.Name = "newDocPathBox";
-            this.newDocPathBox.ReadOnly = true;
-            this.newDocPathBox.Size = new System.Drawing.Size(196, 20);
-            this.newDocPathBox.TabIndex = 21;
-            this.newDocPathBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.newDocPathBox_MouseClick);
-            this.newDocPathBox.TextChanged += new System.EventHandler(this.newDocPathBox_TextChanged);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(242, 330);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(109, 23);
-            this.button8.TabIndex = 23;
-            this.button8.Text = "Сохранить";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // docFileExtLabel
-            // 
-            this.docFileExtLabel.AutoSize = true;
-            this.docFileExtLabel.Location = new System.Drawing.Point(12, 57);
-            this.docFileExtLabel.Name = "docFileExtLabel";
-            this.docFileExtLabel.Size = new System.Drawing.Size(108, 13);
-            this.docFileExtLabel.TabIndex = 22;
-            this.docFileExtLabel.Text = "Расширение файла:";
-            // 
-            // scannedFileExt
-            // 
-            this.scannedFileExt.AutoSize = true;
-            this.scannedFileExt.Location = new System.Drawing.Point(12, 57);
-            this.scannedFileExt.Name = "scannedFileExt";
-            this.scannedFileExt.Size = new System.Drawing.Size(108, 13);
-            this.scannedFileExt.TabIndex = 23;
-            this.scannedFileExt.Text = "Расширение файла:";
-            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
@@ -298,6 +298,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(185, 21);
             this.comboBox1.TabIndex = 18;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // OpenDocForm
             // 
@@ -314,10 +315,10 @@
             this.Load += new System.EventHandler(this.OpenDocForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

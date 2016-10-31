@@ -59,3 +59,18 @@ E:\PROJECTS\stampTracker\StampTracker\obj\Debug\StampTracker.EditUsersForm.resou
 E:\PROJECTS\stampTracker\StampTracker\obj\Debug\StampTracker.NewUserForm.resources
 E:\PROJECTS\stampTracker\StampTracker\obj\Debug\StampTracker.OpenDocForm.resources
 E:\PROJECTS\stampTracker\StampTracker\obj\Debug\StampTracker.SettingsForm.resources
+W:\Abylaikhan\private work\projects\stampTracker\StampTracker\bin\Debug\StampTracker.exe.config
+W:\Abylaikhan\private work\projects\stampTracker\StampTracker\obj\Debug\StampTracker.exe
+W:\Abylaikhan\private work\projects\stampTracker\StampTracker\obj\Debug\StampTracker.pdb
+W:\Abylaikhan\private work\projects\stampTracker\StampTracker\bin\Debug\StampTracker.exe
+W:\Abylaikhan\private work\projects\stampTracker\StampTracker\bin\Debug\StampTracker.pdb
+W:\Abylaikhan\private work\projects\stampTracker\StampTracker\obj\Debug\StampTracker.csprojResolveAssemblyReference.cache
+W:\Abylaikhan\private work\projects\stampTracker\StampTracker\obj\Debug\StampTracker.EditUsersForm.resources
+W:\Abylaikhan\private work\projects\stampTracker\StampTracker\obj\Debug\StampTracker.LoginForm.resources
+W:\Abylaikhan\private work\projects\stampTracker\StampTracker\obj\Debug\StampTracker.MainForm.resources
+W:\Abylaikhan\private work\projects\stampTracker\StampTracker\obj\Debug\StampTracker.NewDocForm.resources
+W:\Abylaikhan\private work\projects\stampTracker\StampTracker\obj\Debug\StampTracker.NewUserForm.resources
+W:\Abylaikhan\private work\projects\stampTracker\StampTracker\obj\Debug\StampTracker.OpenDocForm.resources
+W:\Abylaikhan\private work\projects\stampTracker\StampTracker\obj\Debug\StampTracker.Properties.Resources.resources
+W:\Abylaikhan\private work\projects\stampTracker\StampTracker\obj\Debug\StampTracker.SettingsForm.resources
+W:\Abylaikhan\private work\projects\stampTracker\StampTracker\obj\Debug\StampTracker.csproj.GenerateResource.Cache
