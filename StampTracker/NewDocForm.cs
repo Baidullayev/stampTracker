@@ -79,8 +79,9 @@ namespace StampTracker
         {
             if(scannedDocBox.Text != "")
             {
-                Image scannedImage = Image.FromFile(scannedDocBox.Text);
-                pictureBox1.Image = scannedImage;
+                System.Diagnostics.Process.Start(scannedDocBox.Text);
+                //Image scannedImage = Image.FromFile(scannedDocBox.Text);
+               // pictureBox1.Image = scannedImage;
             }
              
             
@@ -234,8 +235,7 @@ namespace StampTracker
 
         private void button3_Click_1(object sender, EventArgs e)
         {            
-            var docFilePath = Path.GetExtension(docBox.Text);
-            MessageBox.Show(docFilePath);
+
         }
     }
 }
