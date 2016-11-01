@@ -112,7 +112,7 @@ namespace StampTracker
             }
         }
 
-        public void fillingListView(string searchingArg = "*", string uniqueSearch = "*")
+        public void fillingListView(string searchingArg = "*", string uniqueSearch = "*", string searchingByDate = "*")
         {
             listView1.Clear();
             listView1.View = View.Details;
@@ -128,7 +128,7 @@ namespace StampTracker
             using (SqlConnection con = new SqlConnection(MainForm.connectionString))
             {
                 con.Open();
-                
+
                 string command = "select * from documents";
                 SqlCommand cmd = new SqlCommand(command, con); ;
                 if (searchingArg != "*")
@@ -138,43 +138,50 @@ namespace StampTracker
                     cmd.CommandText = command;
                 }
 
-                if(uniqueSearch != "*")
+                if (uniqueSearch != "*")
                 {
-                    if(uniqueSearch == "last 10")
+                    if (uniqueSearch == "last 10")
                     {
-                        command = "select TOP 10 * from documents";                        
+                        command = "select TOP 10 * from documents";
                         cmd.CommandText = command;
                     }
-                    else if(uniqueSearch == "for day")
+                    else if (uniqueSearch == "for day")
                     {
                         command = "select * from documents where DATEDIFF(day, documents.createdDate ,GETDATE()) = 0 ";
                         cmd.CommandText = command;
                     }
-                    else if(uniqueSearch == "last week")
+                    else if (uniqueSearch == "last week")
                     {
                         command = "select * from documents where DATEDIFF(day, documents.createdDate ,GETDATE()) = 7 ";
                         cmd.CommandText = command;
                     }
-                    else if(uniqueSearch == "last month")
+                    else if (uniqueSearch == "last month")
                     {
                         command = "select * from documents where DATEDIFF(day, documents.createdDate ,GETDATE()) = 30 ";
                         cmd.CommandText = command;
                     }
 
                 }
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    string[] arr = new string[5];
-                    while (reader.Read())
-                    {
-                        ListViewItem itm;
-                        arr[0] = reader["name"].ToString();
-                        arr[1] = reader["createdDate"].ToString();
-                        arr[2] = reader["docID"].ToString();
-                        arr[3] = reader["docFileExt"].ToString();
-                        arr[4] = reader["scannedFileExt"].ToString();
-                        itm = new ListViewItem(arr);
-                        listView1.Items.Add(itm);
-                    }
+                if (searchingByDate != "*")
+                {
+                    command = "select * from documents where createdDate=@searchingByDate";
+                    cmd.Parameters.Add("@searchingByDate", SqlDbType.Date).Value = searchingByDate;
+                    cmd.CommandText = command;
+                }
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                string[] arr = new string[5];
+                while (reader.Read())
+                {
+                    ListViewItem itm;
+                    arr[0] = reader["name"].ToString();
+                    arr[1] = reader["createdDate"].ToString();
+                    arr[2] = reader["docID"].ToString();
+                    arr[3] = reader["docFileExt"].ToString();
+                    arr[4] = reader["scannedFileExt"].ToString();
+                    itm = new ListViewItem(arr);
+                    listView1.Items.Add(itm);
+                }
 
             }
         }
@@ -189,7 +196,7 @@ namespace StampTracker
             {
                 fillingListView(textBox3.Text);
             }
-
+            comboBox1.SelectedIndex = -1;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -487,6 +494,11 @@ namespace StampTracker
             {
                 fillingListView(uniqueSearch: "all");
             }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            fillingListView(searchingByDate: dateTimePicker1.Value.Date.ToShortDateString());
         }
     }
 

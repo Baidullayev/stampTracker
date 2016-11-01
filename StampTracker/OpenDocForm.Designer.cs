@@ -51,6 +51,11 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -270,17 +275,17 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(497, 25);
+            this.textBox3.Location = new System.Drawing.Point(642, 26);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(370, 20);
+            this.textBox3.Size = new System.Drawing.Size(479, 20);
             this.textBox3.TabIndex = 11;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // listView1
             // 
-            this.listView1.Location = new System.Drawing.Point(497, 51);
+            this.listView1.Location = new System.Drawing.Point(497, 84);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(624, 329);
+            this.listView1.Size = new System.Drawing.Size(624, 296);
             this.listView1.TabIndex = 12;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
@@ -294,17 +299,66 @@
             "за неделю",
             "за месяц",
             "все"});
-            this.comboBox1.Location = new System.Drawing.Point(936, 24);
+            this.comboBox1.Location = new System.Drawing.Point(936, 57);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(185, 21);
             this.comboBox1.TabIndex = 18;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(494, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(136, 13);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "Поиск по наименованию:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(902, 61);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(28, 13);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "доп;";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(642, 58);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 21;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(0, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "label5";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(580, 61);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(50, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "По дате:";
             // 
             // OpenDocForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1174, 594);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.textBox3);
@@ -349,5 +403,10 @@
         private System.Windows.Forms.Label docFileExtLabel;
         private System.Windows.Forms.TextBox newDocPathBox;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }
