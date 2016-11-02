@@ -500,6 +500,14 @@ namespace StampTracker
         {
             fillingListView(searchingByDate: dateTimePicker1.Value.Date.ToShortDateString());
         }
+        public void selectFirst()
+        {
+            if (listView1.Items.Count > 0)
+            {
+                listView1.Items[0].Selected = true;
+                listView1.Select();
+            }
+        }
     }
 
 }

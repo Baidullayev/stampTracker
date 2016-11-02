@@ -42,10 +42,12 @@
             this.viewDocButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.recentDocGroup = new System.Windows.Forms.GroupBox();
+            this.cloneButton = new System.Windows.Forms.Button();
+            this.openDocButton = new System.Windows.Forms.Button();
+            this.recentDocList = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.recentDocGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -191,30 +193,50 @@
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Location = new System.Drawing.Point(17, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(958, 195);
+            this.groupBox1.Size = new System.Drawing.Size(958, 214);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Новый документ";
             // 
-            // groupBox2
+            // recentDocGroup
             // 
-            this.groupBox2.Controls.Add(this.linkLabel1);
-            this.groupBox2.Location = new System.Drawing.Point(990, 16);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(372, 191);
-            this.groupBox2.TabIndex = 17;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Последние созданные документы";
+            this.recentDocGroup.Controls.Add(this.recentDocList);
+            this.recentDocGroup.Controls.Add(this.openDocButton);
+            this.recentDocGroup.Controls.Add(this.cloneButton);
+            this.recentDocGroup.Location = new System.Drawing.Point(990, 16);
+            this.recentDocGroup.Name = "recentDocGroup";
+            this.recentDocGroup.Size = new System.Drawing.Size(372, 210);
+            this.recentDocGroup.TabIndex = 17;
+            this.recentDocGroup.TabStop = false;
+            this.recentDocGroup.Text = "Последние созданные документы";
             // 
-            // linkLabel1
+            // cloneButton
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(6, 27);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(55, 13);
-            this.linkLabel1.TabIndex = 0;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "linkLabel1";
+            this.cloneButton.Location = new System.Drawing.Point(132, 164);
+            this.cloneButton.Name = "cloneButton";
+            this.cloneButton.Size = new System.Drawing.Size(109, 27);
+            this.cloneButton.TabIndex = 1;
+            this.cloneButton.Text = "Создать клон";
+            this.cloneButton.UseVisualStyleBackColor = true;
+            this.cloneButton.Click += new System.EventHandler(this.cloneButton_Click);
+            // 
+            // openDocButton
+            // 
+            this.openDocButton.Location = new System.Drawing.Point(247, 164);
+            this.openDocButton.Name = "openDocButton";
+            this.openDocButton.Size = new System.Drawing.Size(109, 27);
+            this.openDocButton.TabIndex = 18;
+            this.openDocButton.Text = "Открыть";
+            this.openDocButton.UseVisualStyleBackColor = true;
+            this.openDocButton.Click += new System.EventHandler(this.openDocButton_Click);
+            // 
+            // recentDocList
+            // 
+            this.recentDocList.FormattingEnabled = true;
+            this.recentDocList.Location = new System.Drawing.Point(18, 24);
+            this.recentDocList.Name = "recentDocList";
+            this.recentDocList.Size = new System.Drawing.Size(338, 134);
+            this.recentDocList.TabIndex = 19;
             // 
             // NewDocForm
             // 
@@ -222,7 +244,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1419, 715);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.recentDocGroup);
             this.Controls.Add(this.groupBox1);
             this.Name = "NewDocForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -231,8 +253,7 @@
             this.Load += new System.EventHandler(this.NewDocForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.recentDocGroup.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -252,7 +273,9 @@
         private System.Windows.Forms.Button viewDocButton;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.GroupBox recentDocGroup;
+        private System.Windows.Forms.Button openDocButton;
+        private System.Windows.Forms.Button cloneButton;
+        private System.Windows.Forms.ListBox recentDocList;
     }
 }

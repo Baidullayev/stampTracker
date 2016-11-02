@@ -15,6 +15,7 @@ namespace StampTracker
 {
     public partial class NewDocForm : Form
     {
+        public static List<String> recentDocs = new List<string>();
         public NewDocForm()
         {
             InitializeComponent();
@@ -23,6 +24,12 @@ namespace StampTracker
         private void NewDocForm_Load(object sender, EventArgs e)
         {
             this.Dock = DockStyle.Fill;
+            recentDocs = getRecentDocs(7);
+            
+            for (int i = 0; i < recentDocs.Count(); i++)
+            {
+                recentDocList.Items.Add(recentDocs[i]);
+            }
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -237,5 +244,52 @@ namespace StampTracker
         {            
 
         }
+        private List<String> getRecentDocs(int count = 7)
+        {
+            List<String> recentDocs = new List<String>();
+
+            using (SqlConnection con = new SqlConnection(MainForm.connectionString))
+            {
+                con.Open();
+                using (SqlCommand command = new SqlCommand("select TOP 7 * from documents", con))
+                {
+                    //command.Parameters.AddWithValue("@count", count);
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        recentDocs.Add(reader["name"].ToString());
+                    }
+
+                }
+            }
+            return recentDocs;
+        }
+
+        private void cloneButton_Click(object sender, EventArgs e)
+        {
+            if(recentDocList.SelectedIndex != -1)
+            {
+
+            }
+            
+        }
+
+        private void openDocButton_Click(object sender, EventArgs e)
+        {
+            if (recentDocList.SelectedIndex != -1)
+            {
+                OpenDocForm openForm = new OpenDocForm();
+                openForm.MdiParent = MainForm.ActiveForm;
+                openForm.BringToFront();
+                openForm.Show();
+                openForm.WindowState = FormWindowState.Normal;
+                openForm.WindowState = FormWindowState.Maximized;
+                openForm.fillingListView(recentDocList.SelectedItem.ToString());                
+             
+                openForm.selectFirst();
+            }
+        }
     }
+
 }
