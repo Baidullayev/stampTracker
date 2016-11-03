@@ -43,9 +43,9 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.recentDocGroup = new System.Windows.Forms.GroupBox();
-            this.cloneButton = new System.Windows.Forms.Button();
-            this.openDocButton = new System.Windows.Forms.Button();
             this.recentDocList = new System.Windows.Forms.ListBox();
+            this.openDocButton = new System.Windows.Forms.Button();
+            this.cloneButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.recentDocGroup.SuspendLayout();
             this.SuspendLayout();
@@ -158,6 +158,7 @@
             // 
             // viewDocButton
             // 
+            this.viewDocButton.Enabled = false;
             this.viewDocButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.viewDocButton.Location = new System.Drawing.Point(843, 68);
             this.viewDocButton.Name = "viewDocButton";
@@ -210,15 +211,13 @@
             this.recentDocGroup.TabStop = false;
             this.recentDocGroup.Text = "Последние созданные документы";
             // 
-            // cloneButton
+            // recentDocList
             // 
-            this.cloneButton.Location = new System.Drawing.Point(132, 164);
-            this.cloneButton.Name = "cloneButton";
-            this.cloneButton.Size = new System.Drawing.Size(109, 27);
-            this.cloneButton.TabIndex = 1;
-            this.cloneButton.Text = "Создать клон";
-            this.cloneButton.UseVisualStyleBackColor = true;
-            this.cloneButton.Click += new System.EventHandler(this.cloneButton_Click);
+            this.recentDocList.FormattingEnabled = true;
+            this.recentDocList.Location = new System.Drawing.Point(18, 24);
+            this.recentDocList.Name = "recentDocList";
+            this.recentDocList.Size = new System.Drawing.Size(338, 134);
+            this.recentDocList.TabIndex = 19;
             // 
             // openDocButton
             // 
@@ -230,20 +229,22 @@
             this.openDocButton.UseVisualStyleBackColor = true;
             this.openDocButton.Click += new System.EventHandler(this.openDocButton_Click);
             // 
-            // recentDocList
+            // cloneButton
             // 
-            this.recentDocList.FormattingEnabled = true;
-            this.recentDocList.Location = new System.Drawing.Point(18, 24);
-            this.recentDocList.Name = "recentDocList";
-            this.recentDocList.Size = new System.Drawing.Size(338, 134);
-            this.recentDocList.TabIndex = 19;
+            this.cloneButton.Location = new System.Drawing.Point(132, 164);
+            this.cloneButton.Name = "cloneButton";
+            this.cloneButton.Size = new System.Drawing.Size(109, 27);
+            this.cloneButton.TabIndex = 1;
+            this.cloneButton.Text = "Создать клон";
+            this.cloneButton.UseVisualStyleBackColor = true;
+            this.cloneButton.Click += new System.EventHandler(this.cloneButton_Click);
             // 
             // NewDocForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1419, 715);
+            this.ClientSize = new System.Drawing.Size(1362, 715);
             this.Controls.Add(this.recentDocGroup);
             this.Controls.Add(this.groupBox1);
             this.Name = "NewDocForm";

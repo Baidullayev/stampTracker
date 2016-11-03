@@ -24,12 +24,9 @@ namespace StampTracker
         private void NewDocForm_Load(object sender, EventArgs e)
         {
             this.Dock = DockStyle.Fill;
-            recentDocs = getRecentDocs(7);
+            getRecentDocs();
             
-            for (int i = 0; i < recentDocs.Count(); i++)
-            {
-                recentDocList.Items.Add(recentDocs[i]);
-            }
+
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -58,6 +55,7 @@ namespace StampTracker
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 docBox.Text = openFileDialog1.FileName;
+                viewDocButton.Enabled = true;
             }
         }
 
@@ -102,7 +100,7 @@ namespace StampTracker
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (docBox.Text != "" || nameBox.Text != "" || scannedDocBox.Text != "")
+            if (docBox.Text != "" && nameBox.Text != "")
             {
                 try
                 {
@@ -126,20 +124,25 @@ namespace StampTracker
                                 else
                                 {
                                     reader.Close();
-                                    CalculatorMD5 calculatorMD5 = new CalculatorMD5();
+
+                                    string docFileCheckSum = getSumm(docFilePath); 
 
                                     FileStream docFileStream = File.OpenRead(docFilePath);
                                     BinaryReader rdr = new BinaryReader(docFileStream);
                                     byte[] docFileContent = rdr.ReadBytes((int)docFileStream.Length);
-                                    string docFileCheckSum = calculatorMD5.getFileHash(docFileStream);
+                                    
                                     string docFileExtension = Path.GetExtension(docFilePath);
                                     docFileStream.Read(docFileContent, 0, (int)docFileStream.Length);
-                                    
 
+                                    string scannedFileCheckSum = getSumm(scannedFilePath); 
                                     FileStream scannedDocFileStream = File.OpenRead(scannedFilePath);
                                     BinaryReader rdr2 = new BinaryReader(scannedDocFileStream);
                                     byte[] scannedDocFileContent = rdr2.ReadBytes((int)scannedDocFileStream.Length);
-                                    string scannedFileCheckSum = calculatorMD5.getFileHash(scannedDocFileStream);
+                                   
+                                   
+
+
+
                                     string scannedFileExtension = Path.GetExtension(scannedFilePath);
 
 
@@ -186,6 +189,7 @@ namespace StampTracker
                                                         cmd.Parameters.AddWithValue("@scannedFileExt", scannedFileExtension);
                                                         cmd.ExecuteNonQuery();
                                                         MessageBox.Show("Новый документ создан успешно!");
+                                                        getRecentDocs();
                                                     }
                                                 }
                                                 //I stopped here
@@ -211,6 +215,7 @@ namespace StampTracker
                                                     cmd.Parameters.AddWithValue("@scannedFileExt", scannedFileExtension);
                                                     cmd.ExecuteNonQuery();
                                                     MessageBox.Show("Новый документ создан успешно!");
+                                                    getRecentDocs();
                                                 }
                                             }
                                         }
@@ -244,14 +249,14 @@ namespace StampTracker
         {            
 
         }
-        private List<String> getRecentDocs(int count = 7)
+        private void getRecentDocs(int count = 10)
         {
             List<String> recentDocs = new List<String>();
 
             using (SqlConnection con = new SqlConnection(MainForm.connectionString))
             {
                 con.Open();
-                using (SqlCommand command = new SqlCommand("select TOP 7 * from documents", con))
+                using (SqlCommand command = new SqlCommand("select TOP 10 * from documents order by docID desc", con))
                 {
                     //command.Parameters.AddWithValue("@count", count);
 
@@ -263,7 +268,12 @@ namespace StampTracker
 
                 }
             }
-            return recentDocs;
+            recentDocList.Items.Clear();
+            for (int i = 0; i < recentDocs.Count(); i++)
+            {
+                recentDocList.Items.Add(recentDocs[i]);
+            }
+            
         }
 
         private void cloneButton_Click(object sender, EventArgs e)
@@ -289,6 +299,23 @@ namespace StampTracker
              
                 openForm.selectFirst();
             }
+        }
+
+        private string getSumm(string fileName)
+        {
+            FileStream file = new FileStream(fileName, FileMode.Open);
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] retVal = md5.ComputeHash(file);
+            file.Close();
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < retVal.Length; i++)
+            {
+                sb.Append(retVal[i].ToString("x2"));
+            }
+            file.Close();
+            return sb.ToString();
+
         }
     }
 
