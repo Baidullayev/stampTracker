@@ -63,7 +63,7 @@ namespace StampTracker
 
         private void button1_Click(object sender, EventArgs e)
         {
-            openFileForView();
+            openFileForView("docFile");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -201,7 +201,7 @@ namespace StampTracker
 
         private void button3_Click(object sender, EventArgs e)
         {
-            openFileForView("scannedDocFIle");
+            openFileForView("scannedDocFile");
         }
 
         private void saveDocAs(string docType = "docFile")
@@ -227,12 +227,12 @@ namespace StampTracker
                     string extension;
                     if (docType == "scannedDocFile")
                     {
-                        extension = reader["scannedFIleExt"].ToString();
+                        extension = reader["scannedFileExt"].ToString();
                         savefile.FileName = nameBox.Text + " - отсканированный" + extension;
                     }
                     else
                     {
-                        extension = reader["docFIleExt"].ToString();
+                        extension = reader["docFileExt"].ToString();
                         savefile.FileName = nameBox.Text + extension;
                     }
 
@@ -249,7 +249,7 @@ namespace StampTracker
 
             }
         }
-        private void openFileForView(string docType = "docFIle")
+        public void openFileForView(string docType)
         {
             if (hidden_id_label.Text != "empty")
             {
@@ -262,7 +262,7 @@ namespace StampTracker
 
                     if(docType == "scannedDocFile")
                     {
-                        cmd = new SqlCommand("select scannedDocFile, scannedDocFileExt from documents where docID=@id", con);
+                        cmd = new SqlCommand("select scannedDocFile, scannedFileExt from documents where docID=@id", con);
                     }else cmd = new SqlCommand("select docFile, docFileExt from documents where docID=@id", con);
 
                     string id = hidden_id_label.Text;
@@ -274,7 +274,14 @@ namespace StampTracker
                         System.IO.DirectoryInfo di = new DirectoryInfo(Directory.GetCurrentDirectory() + "\\temp\\");
                         foreach (FileInfo file in di.GetFiles())
                         {
-                            file.Delete();
+                            try
+                            {
+                                file.Delete();
+                            }catch(Exception e)
+                            {
+
+                            }
+                            
                         }
                         reader.Read();
                         var blob = new Byte[(reader.GetBytes(0, 0, null, 0, int.MaxValue))];
@@ -282,8 +289,8 @@ namespace StampTracker
 
                         if (docType=="scannedDocFile")
                         {
-                            extension = reader["scannedDocFIleExt"].ToString();
-                        }else extension = reader["docFIleExt"].ToString();
+                            extension = reader["scannedFileExt"].ToString();
+                        }else extension = reader["docFileExt"].ToString();
 
                         
                         var time = DateTime.Now.ToString("hmmss fff");

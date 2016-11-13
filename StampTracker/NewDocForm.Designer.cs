@@ -235,7 +235,7 @@
             this.cloneButton.Name = "cloneButton";
             this.cloneButton.Size = new System.Drawing.Size(109, 27);
             this.cloneButton.TabIndex = 1;
-            this.cloneButton.Text = "Создать клон";
+            this.cloneButton.Text = "Клонировать";
             this.cloneButton.UseVisualStyleBackColor = true;
             this.cloneButton.Click += new System.EventHandler(this.cloneButton_Click);
             // 
