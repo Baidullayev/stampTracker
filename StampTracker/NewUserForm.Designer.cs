@@ -31,7 +31,10 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
             this.Clear = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.rePasswordBox = new System.Windows.Forms.TextBox();
             this.passwordBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.loginBox = new System.Windows.Forms.TextBox();
@@ -42,9 +45,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.nameBox = new System.Windows.Forms.TextBox();
             this.NameLabel = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.rePasswordBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,23 +75,40 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(6, 272);
+            this.button3.Location = new System.Drawing.Point(6, 226);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(272, 30);
-            this.button3.TabIndex = 4;
+            this.button3.TabIndex = 7;
             this.button3.Text = "Сохранить нового пользователя";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Clear
             // 
-            this.Clear.Location = new System.Drawing.Point(136, 230);
+            this.Clear.Location = new System.Drawing.Point(67, 262);
             this.Clear.Name = "Clear";
-            this.Clear.Size = new System.Drawing.Size(142, 27);
-            this.Clear.TabIndex = 12;
+            this.Clear.Size = new System.Drawing.Size(142, 30);
+            this.Clear.TabIndex = 8;
             this.Clear.Text = "Очистить";
             this.Clear.UseVisualStyleBackColor = true;
             this.Clear.Click += new System.EventHandler(this.Clear_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(136, 190);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(142, 21);
+            this.comboBox1.TabIndex = 6;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(16, 193);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(32, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Роль";
             // 
             // label5
             // 
@@ -102,13 +119,21 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Повтор пароля";
             // 
+            // rePasswordBox
+            // 
+            this.rePasswordBox.Location = new System.Drawing.Point(107, 162);
+            this.rePasswordBox.Name = "rePasswordBox";
+            this.rePasswordBox.PasswordChar = '*';
+            this.rePasswordBox.Size = new System.Drawing.Size(171, 20);
+            this.rePasswordBox.TabIndex = 5;
+            // 
             // passwordBox
             // 
             this.passwordBox.Location = new System.Drawing.Point(107, 132);
             this.passwordBox.Name = "passwordBox";
             this.passwordBox.PasswordChar = '*';
             this.passwordBox.Size = new System.Drawing.Size(171, 20);
-            this.passwordBox.TabIndex = 9;
+            this.passwordBox.TabIndex = 4;
             // 
             // label4
             // 
@@ -124,7 +149,7 @@
             this.loginBox.Location = new System.Drawing.Point(82, 103);
             this.loginBox.Name = "loginBox";
             this.loginBox.Size = new System.Drawing.Size(196, 20);
-            this.loginBox.TabIndex = 7;
+            this.loginBox.TabIndex = 3;
             // 
             // label3
             // 
@@ -140,7 +165,7 @@
             this.fatherNameBox.Location = new System.Drawing.Point(82, 74);
             this.fatherNameBox.Name = "fatherNameBox";
             this.fatherNameBox.Size = new System.Drawing.Size(196, 20);
-            this.fatherNameBox.TabIndex = 5;
+            this.fatherNameBox.TabIndex = 2;
             // 
             // label2
             // 
@@ -156,7 +181,7 @@
             this.lastNameBox.Location = new System.Drawing.Point(82, 46);
             this.lastNameBox.Name = "lastNameBox";
             this.lastNameBox.Size = new System.Drawing.Size(196, 20);
-            this.lastNameBox.TabIndex = 3;
+            this.lastNameBox.TabIndex = 1;
             // 
             // label1
             // 
@@ -172,7 +197,7 @@
             this.nameBox.Location = new System.Drawing.Point(82, 19);
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(196, 20);
-            this.nameBox.TabIndex = 1;
+            this.nameBox.TabIndex = 0;
             // 
             // NameLabel
             // 
@@ -182,31 +207,6 @@
             this.NameLabel.Size = new System.Drawing.Size(29, 13);
             this.NameLabel.TabIndex = 0;
             this.NameLabel.Text = "Имя";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(16, 193);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(32, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Роль";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(136, 190);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(142, 21);
-            this.comboBox1.TabIndex = 11;
-            // 
-            // rePasswordBox
-            // 
-            this.rePasswordBox.Location = new System.Drawing.Point(107, 162);
-            this.rePasswordBox.Name = "rePasswordBox";
-            this.rePasswordBox.PasswordChar = '*';
-            this.rePasswordBox.Size = new System.Drawing.Size(171, 20);
-            this.rePasswordBox.TabIndex = 9;
             // 
             // NewUserForm
             // 
