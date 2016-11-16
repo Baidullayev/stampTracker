@@ -76,53 +76,59 @@ namespace StampTracker
         }
         private void fillUserList(string lastName = null)
         {
-            listView1.Clear();
-            listView1.View = View.Details;
-            listView1.GridLines = true;
-            listView1.FullRowSelect = true;
-            listView1.Columns.Add("Имя", 100);
-            listView1.Columns.Add("Фамилия", 100);
-            listView1.Columns.Add("Отчество", 100);
-            userList.Clear();
-            string command = "Select * from users";
-
-
-
-            using (SqlConnection con = new SqlConnection(MainForm.connectionString))
+            try
             {
-                con.Open();
+                listView1.Clear();
+                listView1.View = View.Details;
+                listView1.GridLines = true;
+                listView1.FullRowSelect = true;
+                listView1.Columns.Add("Имя", 100);
+                listView1.Columns.Add("Фамилия", 100);
+                listView1.Columns.Add("Отчество", 100);
+                userList.Clear();
+                string command = "Select * from users";
 
 
 
-                if (lastName != null)
+                using (SqlConnection con = new SqlConnection(MainForm.connectionString))
                 {
-                    command = "select * from users where lastName LIKE @lastName";
+                    con.Open();
 
+
+
+                    if (lastName != null)
+                    {
+                        command = "select * from users where lastName LIKE @lastName";
+
+                    }
+                    SqlCommand cmd = new SqlCommand(command, con);
+                    cmd.Parameters.AddWithValue("@lastName", "%" + lastName + "%");
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    string[] arr = new string[5];
+                    while (reader.Read())
+                    {
+                        User tempUser = new User();
+                        tempUser.userID = (Int32)reader["userID"];
+                        tempUser.firstName = reader["firstName"].ToString();
+                        tempUser.lastName = reader["lastName"].ToString();
+                        tempUser.fatherName = reader["fatherName"].ToString();
+                        tempUser.userName = reader["userName"].ToString();
+                        tempUser.role = reader["role"].ToString();
+                        tempUser.password = reader["password"].ToString();
+
+                        userList.Add(tempUser);
+
+                        arr[0] = reader["firstName"].ToString();
+                        arr[1] = reader["lastName"].ToString();
+                        arr[2] = reader["fatherName"].ToString();
+                        ListViewItem itm = new ListViewItem(arr);
+                        listView1.Items.Add(itm);
+                    }
                 }
-                SqlCommand cmd = new SqlCommand(command, con);
-                cmd.Parameters.AddWithValue("@lastName", "%" + lastName + "%");
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                string[] arr = new string[5];
-                while (reader.Read())
-                {
-                    User tempUser = new User();
-                    tempUser.userID = (Int32)reader["userID"];
-                    tempUser.firstName = reader["firstName"].ToString();
-                    tempUser.lastName = reader["lastName"].ToString();
-                    tempUser.fatherName = reader["fatherName"].ToString();
-                    tempUser.userName = reader["userName"].ToString();
-                    tempUser.role = reader["role"].ToString();
-                    tempUser.password = reader["password"].ToString();
-
-                    userList.Add(tempUser);
-
-                    arr[0] = reader["firstName"].ToString();
-                    arr[1] = reader["lastName"].ToString();
-                    arr[2] = reader["fatherName"].ToString();
-                    ListViewItem itm = new ListViewItem(arr);
-                    listView1.Items.Add(itm);
-                }
+            }catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
         }
 
@@ -141,35 +147,42 @@ namespace StampTracker
             var result = MessageBox.Show("Вы действительно хотите сохранить изменения? ", "Изменение", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-
+                editUser();
             }
         }
         private void editUser()
         {
-            if (nameBox.Text != "" && lastnameBox.Text != "" && usernameBox.Text != "" && passwordBox.Text != "")
+            try
             {
-                using (SqlConnection con = new SqlConnection(MainForm.connectionString))
+                if (nameBox.Text != "" && lastnameBox.Text != "" && usernameBox.Text != "" && passwordBox.Text != "")
                 {
-                    
-                    string command = "update users set firstName=@firstName, lastName=@lastName, fatherName=@fatherName, userName=@userName, password=@password, role=@role where userID=@id";
-                    SqlCommand cmd = new SqlCommand(command, con);
+                    using (SqlConnection con = new SqlConnection(MainForm.connectionString))
+                    {
+                        con.Open();
+                        string command = "update users set firstName=@firstName, lastName=@lastName, fatherName=@fatherName, userName=@userName, password=@password, role=@role where userID=@id";
+                        SqlCommand cmd = new SqlCommand(command, con);
+                        cmd.Parameters.AddWithValue("@id", hiddenId.Text);
+                        cmd.Parameters.AddWithValue("@lastName", lastnameBox.Text);
+                        cmd.Parameters.AddWithValue("@firstName", nameBox.Text);
+                        cmd.Parameters.AddWithValue("@fatherName", fatherNameBox.Text);
+                        cmd.Parameters.AddWithValue("@userName", usernameBox.Text);
+                        cmd.Parameters.AddWithValue("@password", passwordBox.Text);
+                        cmd.Parameters.AddWithValue("@role", roleBox.SelectedText);
 
-                    cmd.Parameters.AddWithValue("@lastName",lastnameBox.Text);
-                    cmd.Parameters.AddWithValue("@firstName", nameBox.Text);
-                    cmd.Parameters.AddWithValue("@fatherName", fatherNameBox.Text);
-                    cmd.Parameters.AddWithValue("@userName", usernameBox.Text);
-                    cmd.Parameters.AddWithValue("@password", passwordBox.Text);
-                    cmd.Parameters.AddWithValue("@role", roleBox.SelectedText);
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Успешно!");
 
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Успешно!");
-
-                    ////////////////////////////////////////////////
+                        ////////////////////////////////////////////////
+                    }
                 }
-            }
-            else { MessageBox.Show("Пожалуйста заполните необходимые поля"); }
+                else { MessageBox.Show("Пожалуйста заполните необходимые поля"); }
 
-        }
+
+            }catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+         }
     }
     }
 

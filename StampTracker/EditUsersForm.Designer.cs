@@ -30,6 +30,7 @@
         {
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.hiddenId = new System.Windows.Forms.Label();
             this.createUserButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -47,7 +48,6 @@
             this.NameLabel = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.hiddenId = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +62,6 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.hiddenId);
-            this.groupBox1.Controls.Add(this.createUserButton);
             this.groupBox1.Controls.Add(this.deleteButton);
             this.groupBox1.Controls.Add(this.saveButton);
             this.groupBox1.Controls.Add(this.roleBox);
@@ -79,14 +78,24 @@
             this.groupBox1.Controls.Add(this.NameLabel);
             this.groupBox1.Location = new System.Drawing.Point(12, 14);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(284, 283);
+            this.groupBox1.Size = new System.Drawing.Size(284, 250);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Детальная информация";
             // 
+            // hiddenId
+            // 
+            this.hiddenId.AutoSize = true;
+            this.hiddenId.Location = new System.Drawing.Point(10, 230);
+            this.hiddenId.Name = "hiddenId";
+            this.hiddenId.Size = new System.Drawing.Size(50, 13);
+            this.hiddenId.TabIndex = 11;
+            this.hiddenId.Text = "hiddenID";
+            this.hiddenId.Visible = false;
+            // 
             // createUserButton
             // 
-            this.createUserButton.Location = new System.Drawing.Point(36, 246);
+            this.createUserButton.Location = new System.Drawing.Point(67, 334);
             this.createUserButton.Name = "createUserButton";
             this.createUserButton.Size = new System.Drawing.Size(195, 31);
             this.createUserButton.TabIndex = 8;
@@ -96,7 +105,7 @@
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(55, 199);
+            this.deleteButton.Location = new System.Drawing.Point(203, 218);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(75, 23);
             this.deleteButton.TabIndex = 7;
@@ -105,9 +114,9 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(136, 199);
+            this.saveButton.Location = new System.Drawing.Point(19, 189);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(142, 23);
+            this.saveButton.Size = new System.Drawing.Size(259, 23);
             this.saveButton.TabIndex = 6;
             this.saveButton.Text = "Сохранить изменения";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -233,22 +242,14 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
-            // hiddenId
-            // 
-            this.hiddenId.AutoSize = true;
-            this.hiddenId.Location = new System.Drawing.Point(10, 230);
-            this.hiddenId.Name = "hiddenId";
-            this.hiddenId.Size = new System.Drawing.Size(50, 13);
-            this.hiddenId.TabIndex = 11;
-            this.hiddenId.Text = "hiddenID";
-            this.hiddenId.Visible = false;
-            // 
             // EditUsersForm
             // 
+            this.AcceptButton = this.saveButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(639, 413);
             this.Controls.Add(this.listView1);
+            this.Controls.Add(this.createUserButton);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textBox1);

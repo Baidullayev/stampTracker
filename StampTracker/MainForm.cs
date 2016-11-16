@@ -66,18 +66,23 @@ namespace StampTracker
                 }
                 catch (Exception es)
                 {
-                    ConnectionStripLabel.Text = "Соединение с БД не установлено";
+                    UpdateMenuStatus("Соединение с БД не установлено");
+                    //ConnectionStripLabel.Text = "Соединение с БД не установлено";
                     MessageBox.Show(es.Message);
 
                 }
             }
-            else ConnectionStripLabel.Text = "Требуется настройка сервера БД";
+            else UpdateMenuStatus("Требуется настройка сервера БД"); //ConnectionStripLabel.Text = "Требуется настройка сервера БД";
 
 
             IsMdiContainer = true;
             
         }
 
+        public void UpdateMenuStatus(string mess)
+        {
+            ConnectionStripLabel.Text = mess;
+        }
         private void создатьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NewDocForm newDocForm = new NewDocForm();
@@ -155,11 +160,7 @@ namespace StampTracker
         {
 
         }
-        public static void ss()
-        {
-            
-            
-        }
+
 
         private void MainForm_Enter(object sender, EventArgs e)
         {

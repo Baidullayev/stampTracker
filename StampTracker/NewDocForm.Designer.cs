@@ -65,7 +65,7 @@
             this.nameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nameBox.Location = new System.Drawing.Point(238, 31);
             this.nameBox.Name = "nameBox";
-            this.nameBox.Size = new System.Drawing.Size(366, 20);
+            this.nameBox.Size = new System.Drawing.Size(422, 20);
             this.nameBox.TabIndex = 2;
             // 
             // docBox
@@ -204,7 +204,7 @@
             this.recentDocGroup.Controls.Add(this.recentDocList);
             this.recentDocGroup.Controls.Add(this.openDocButton);
             this.recentDocGroup.Controls.Add(this.cloneButton);
-            this.recentDocGroup.Location = new System.Drawing.Point(990, 16);
+            this.recentDocGroup.Location = new System.Drawing.Point(981, 16);
             this.recentDocGroup.Name = "recentDocGroup";
             this.recentDocGroup.Size = new System.Drawing.Size(372, 210);
             this.recentDocGroup.TabIndex = 17;
@@ -241,6 +241,7 @@
             // 
             // NewDocForm
             // 
+            this.AcceptButton = this.saveButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;

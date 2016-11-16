@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dbNameBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.passwordBox = new System.Windows.Forms.TextBox();
@@ -39,8 +41,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.serversBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dbNameBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,12 +65,28 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметры подключения к БД";
             // 
+            // dbNameBox
+            // 
+            this.dbNameBox.Location = new System.Drawing.Point(110, 92);
+            this.dbNameBox.Name = "dbNameBox";
+            this.dbNameBox.Size = new System.Drawing.Size(197, 20);
+            this.dbNameBox.TabIndex = 2;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 95);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(98, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Имя базы данных";
+            // 
             // saveButton
             // 
             this.saveButton.Location = new System.Drawing.Point(232, 203);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 9;
+            this.saveButton.TabIndex = 6;
             this.saveButton.Text = "Сохранить";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.button2_Click);
@@ -80,7 +96,7 @@
             this.button1.Location = new System.Drawing.Point(150, 203);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 8;
+            this.button1.TabIndex = 5;
             this.button1.Text = "Проверить";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -91,14 +107,14 @@
             this.passwordBox.Name = "passwordBox";
             this.passwordBox.PasswordChar = '*';
             this.passwordBox.Size = new System.Drawing.Size(196, 20);
-            this.passwordBox.TabIndex = 7;
+            this.passwordBox.TabIndex = 4;
             // 
             // loginBox
             // 
             this.loginBox.Location = new System.Drawing.Point(111, 137);
             this.loginBox.Name = "loginBox";
             this.loginBox.Size = new System.Drawing.Size(196, 20);
-            this.loginBox.TabIndex = 6;
+            this.loginBox.TabIndex = 3;
             // 
             // label4
             // 
@@ -123,7 +139,7 @@
             this.instanceBox.Location = new System.Drawing.Point(89, 61);
             this.instanceBox.Name = "instanceBox";
             this.instanceBox.Size = new System.Drawing.Size(218, 20);
-            this.instanceBox.TabIndex = 3;
+            this.instanceBox.TabIndex = 1;
             // 
             // label2
             // 
@@ -140,7 +156,7 @@
             this.serversBox.Location = new System.Drawing.Point(89, 28);
             this.serversBox.Name = "serversBox";
             this.serversBox.Size = new System.Drawing.Size(218, 21);
-            this.serversBox.TabIndex = 1;
+            this.serversBox.TabIndex = 0;
             // 
             // label1
             // 
@@ -150,22 +166,6 @@
             this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Имя сервера";
-            // 
-            // dbNameBox
-            // 
-            this.dbNameBox.Location = new System.Drawing.Point(110, 92);
-            this.dbNameBox.Name = "dbNameBox";
-            this.dbNameBox.Size = new System.Drawing.Size(197, 20);
-            this.dbNameBox.TabIndex = 11;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 95);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(98, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Имя базы данных";
             // 
             // SettingsForm
             // 

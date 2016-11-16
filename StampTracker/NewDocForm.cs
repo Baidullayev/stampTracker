@@ -92,7 +92,15 @@ namespace StampTracker
                 }
                 else 
                 {
-                    System.Diagnostics.Process.Start(scannedDocBox.Text);
+                    try
+                    {
+                        System.Diagnostics.Process.Start(scannedDocBox.Text);
+                    }
+                    catch (Exception es)
+                    {
+                        MessageBox.Show(es.Message);
+                    }
+                    
                 }                
 
             }
@@ -102,29 +110,40 @@ namespace StampTracker
 
         private void viewDocButton_Click(object sender, EventArgs e)
         {
+
             if (docBox.Text.Contains("<clone>"))
             {
                 openForView("docFile");
             }
             else
             {
-                System.Diagnostics.Process.Start(docBox.Text);
+                try
+                {
+                    System.Diagnostics.Process.Start(docBox.Text);
+                }
+                catch (Exception se)
+                {
+                    MessageBox.Show(se.Message);
+                }
+                
                
             }
         }
 
         private void openForView( string docType)
         {
-            string docname = null;
-            if (docType == "docFile")
+            try
             {
-                docname = docBox.Text.Remove(0, 10);
-            }
-            else if(docType == "scannedDocFile")
-            {
-                docname = scannedDocBox.Text.Remove(0, 10);
-            }
-                 
+                string docname = null;
+                if (docType == "docFile")
+                {
+                    docname = docBox.Text.Remove(0, 10);
+                }
+                else if (docType == "scannedDocFile")
+                {
+                    docname = scannedDocBox.Text.Remove(0, 10);
+                }
+
                 using (SqlConnection con = new SqlConnection(MainForm.connectionString))
                 {
                     MemoryStream memoryStream = new MemoryStream();
@@ -138,7 +157,7 @@ namespace StampTracker
                     }
                     else cmd = new SqlCommand("select docFile, docFileExt from documents where name=@docname", con);
 
-                   
+
                     cmd.Parameters.AddWithValue("@docname", docname);
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -180,94 +199,65 @@ namespace StampTracker
                     }
 
                 }
+            }catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
             
         }
 
         public void saveNewDoc()
         {
-            if (docBox.Text != "" && nameBox.Text != "")
+            try
             {
-                string newDocName = nameBox.Text;
-                string docFileCheckSum = null;
-                string docFileExtension = null;
-                string scannedFileCheckSum = null;
-                string scannedFileExtension = null;
-                byte[] docFileContent = null;
-                byte[] scannedDocFileContent = null;
-
-
-
-                string docFilePath = docBox.Text;
-                string scannedFilePath = scannedDocBox.Text;
-
-                
-                if (!nameCheck(newDocName))
+                if (docBox.Text != "" && nameBox.Text != "")
                 {
-                    if (docFilePath.Contains("<clone>"))
-                    {
-                        string donorDocName = docFilePath.Remove(0, 10);
-                        docFileContent = getByteFromRecord(donorDocName, "docFile");                        
-                        docFileExtension = getExtensionFromRecord(donorDocName, "docFile");
-                        docFileCheckSum = getSummFromRecord(donorDocName, "checksumDocFIle");
-                    }
-                    else if (!docFilePath.Contains("<clone>"))
-                    {
-                        docFileContent = getByteOfFile(docFilePath);
-                        docFileExtension = Path.GetExtension(docFilePath);
-                        docFileCheckSum = getSumm(docFilePath);
-                    }
+                    string newDocName = nameBox.Text;
+                    string docFileCheckSum = null;
+                    string docFileExtension = null;
+                    string scannedFileCheckSum = null;
+                    string scannedFileExtension = null;
+                    byte[] docFileContent = null;
+                    byte[] scannedDocFileContent = null;
 
-                    if (scannedFilePath.Contains("<clone>"))
-                    {
-                        string donorDocName = scannedFilePath.Remove(0, 10);
-                        scannedDocFileContent = getByteFromRecord(donorDocName, "scannedDocFile");
-                        scannedFileExtension = getExtensionFromRecord(donorDocName, "scannedDocFile");
-                        scannedFileCheckSum = getSummFromRecord(donorDocName, "checksumScannedFile");
-                    }
-                    else if (!scannedFilePath.Contains("<clone>"))
-                    {
-                        scannedDocFileContent = getByteOfFile(scannedFilePath);
-                        scannedFileCheckSum = getSumm(scannedFilePath);
-                        scannedFileExtension = Path.GetExtension(scannedFilePath);
-                    }
 
-                    List<string> checkSumList = searchingCheckSum(docFileCheckSum, scannedFileExtension);
-                    if(checkSumList == null)
+
+                    string docFilePath = docBox.Text;
+                    string scannedFilePath = scannedDocBox.Text;
+
+
+                    if (!nameCheck(newDocName))
                     {
-                        using (SqlConnection con = new SqlConnection(MainForm.connectionString))
+                        if (docFilePath.Contains("<clone>"))
                         {
-                            con.Open();
-                            using (SqlCommand cmd = new SqlCommand("insert into documents values(@name, @date,@doc, @scannedDoc, @checkSumOriginal, @checkSumScanned, @docFileExt, @scannedFileExt)", con))
-                            {
-                                cmd.Parameters.AddWithValue("@name", newDocName);
-                                DateTime utcDate = DateTime.UtcNow;
-                                cmd.Parameters.AddWithValue("@date", utcDate);
-                                cmd.Parameters.Add("@doc", SqlDbType.Binary, docFileContent.Length).Value = docFileContent;
-                                cmd.Parameters.Add("@scannedDoc", SqlDbType.Binary, scannedDocFileContent.Length).Value = scannedDocFileContent;
-                                cmd.Parameters.AddWithValue("@checkSumOriginal", docFileCheckSum);
-                                cmd.Parameters.AddWithValue("@checkSumScanned", scannedFileCheckSum);
-                                cmd.Parameters.AddWithValue("@docFIleExt", docFileExtension);
-                                cmd.Parameters.AddWithValue("@scannedFileExt", scannedFileExtension);
-                                cmd.ExecuteNonQuery();
-                                MessageBox.Show("Новый документ создан успешно!");
-                                getRecentDocs();
-                            }
+                            string donorDocName = docFilePath.Remove(0, 10);
+                            docFileContent = getByteFromRecord(donorDocName, "docFile");
+                            docFileExtension = getExtensionFromRecord(donorDocName, "docFile");
+                            docFileCheckSum = getSummFromRecord(donorDocName, "checksumDocFIle");
                         }
-                    }
-                    else
-                    {
-                        string foundDocs = "";
-                        for (int i = 0; i < checkSumList.Count; i++)
+                        else if (!docFilePath.Contains("<clone>"))
                         {
-                            if (i == 0)
-                            {
-                                foundDocs += checkSumList[i].ToString();
-                            }
-                            else
-                                foundDocs += ", " + checkSumList[i].ToString();
+                            docFileContent = getByteOfFile(docFilePath);
+                            docFileExtension = Path.GetExtension(docFilePath);
+                            docFileCheckSum = getSumm(docFilePath);
                         }
-                        var result = MessageBox.Show("Минимум один из прикрепленных файлов уже имееться в следующих записах: " + foundDocs + "сохранить все равно?", "информация", MessageBoxButtons.YesNo);
-                        if (result == DialogResult.Yes)
+
+                        if (scannedFilePath.Contains("<clone>"))
+                        {
+                            string donorDocName = scannedFilePath.Remove(0, 10);
+                            scannedDocFileContent = getByteFromRecord(donorDocName, "scannedDocFile");
+                            scannedFileExtension = getExtensionFromRecord(donorDocName, "scannedDocFile");
+                            scannedFileCheckSum = getSummFromRecord(donorDocName, "checksumScannedFile");
+                        }
+                        else if (!scannedFilePath.Contains("<clone>"))
+                        {
+                            scannedDocFileContent = getByteOfFile(scannedFilePath);
+                            scannedFileCheckSum = getSumm(scannedFilePath);
+                            scannedFileExtension = Path.GetExtension(scannedFilePath);
+                        }
+
+                        List<string> checkSumList = searchingCheckSum(docFileCheckSum, scannedFileExtension);
+                        if (checkSumList == null)
                         {
                             using (SqlConnection con = new SqlConnection(MainForm.connectionString))
                             {
@@ -289,18 +279,58 @@ namespace StampTracker
                                 }
                             }
                         }
-                    }
+                        else
+                        {
+                            string foundDocs = "";
+                            for (int i = 0; i < checkSumList.Count; i++)
+                            {
+                                if (i == 0)
+                                {
+                                    foundDocs += checkSumList[i].ToString();
+                                }
+                                else
+                                    foundDocs += ", " + checkSumList[i].ToString();
+                            }
+                            var result = MessageBox.Show("Минимум один из прикрепленных файлов уже имееться в следующих записах: " + foundDocs + "сохранить все равно?", "информация", MessageBoxButtons.YesNo);
+                            if (result == DialogResult.Yes)
+                            {
+                                using (SqlConnection con = new SqlConnection(MainForm.connectionString))
+                                {
+                                    con.Open();
+                                    using (SqlCommand cmd = new SqlCommand("insert into documents values(@name, @date,@doc, @scannedDoc, @checkSumOriginal, @checkSumScanned, @docFileExt, @scannedFileExt)", con))
+                                    {
+                                        cmd.Parameters.AddWithValue("@name", newDocName);
+                                        DateTime utcDate = DateTime.UtcNow;
+                                        cmd.Parameters.AddWithValue("@date", utcDate);
+                                        cmd.Parameters.Add("@doc", SqlDbType.Binary, docFileContent.Length).Value = docFileContent;
+                                        cmd.Parameters.Add("@scannedDoc", SqlDbType.Binary, scannedDocFileContent.Length).Value = scannedDocFileContent;
+                                        cmd.Parameters.AddWithValue("@checkSumOriginal", docFileCheckSum);
+                                        cmd.Parameters.AddWithValue("@checkSumScanned", scannedFileCheckSum);
+                                        cmd.Parameters.AddWithValue("@docFIleExt", docFileExtension);
+                                        cmd.Parameters.AddWithValue("@scannedFileExt", scannedFileExtension);
+                                        cmd.ExecuteNonQuery();
+                                        MessageBox.Show("Новый документ создан успешно!");
+                                        getRecentDocs();
+                                    }
+                                }
+                            }
+                        }
 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Документ с таким именем уже существует");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Документ с таким именем уже существует");
+                    MessageBox.Show("Вы должный указать найменование документа и прикрепить файлы");
                 }
-            }
-            else
+            }catch(Exception e)
             {
-                MessageBox.Show("Вы должный указать найменование документа и прикрепить файлы");
+                MessageBox.Show(e.Message);
             }
+
         }
         
         private void saveButton_Click(object sender, EventArgs e)
@@ -484,6 +514,7 @@ namespace StampTracker
             {
                 clone(recentDocList.SelectedItem.ToString());
                 viewDocButton.Enabled = true;
+                viewScanImgButton.Enabled = true;
             }
             
         }

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
             this.Clear = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.roleComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.rePasswordBox = new System.Windows.Forms.TextBox();
@@ -50,9 +50,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.saveButton);
             this.groupBox1.Controls.Add(this.Clear);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.roleComboBox);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.rePasswordBox);
@@ -73,15 +73,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Детальная информация";
             // 
-            // button3
+            // saveButton
             // 
-            this.button3.Location = new System.Drawing.Point(6, 226);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(272, 30);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Сохранить нового пользователя";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.saveButton.Location = new System.Drawing.Point(6, 226);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(272, 30);
+            this.saveButton.TabIndex = 7;
+            this.saveButton.Text = "Сохранить нового пользователя";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.button3_Click);
             // 
             // Clear
             // 
@@ -93,13 +93,17 @@
             this.Clear.UseVisualStyleBackColor = true;
             this.Clear.Click += new System.EventHandler(this.Clear_Click);
             // 
-            // comboBox1
+            // roleComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(136, 190);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(142, 21);
-            this.comboBox1.TabIndex = 6;
+            this.roleComboBox.FormattingEnabled = true;
+            this.roleComboBox.Items.AddRange(new object[] {
+            "админ",
+            "user",
+            "reader"});
+            this.roleComboBox.Location = new System.Drawing.Point(136, 190);
+            this.roleComboBox.Name = "roleComboBox";
+            this.roleComboBox.Size = new System.Drawing.Size(142, 21);
+            this.roleComboBox.TabIndex = 6;
             // 
             // label6
             // 
@@ -217,6 +221,7 @@
             this.Name = "NewUserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Новый пользователь";
+            this.Load += new System.EventHandler(this.NewUserForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -226,7 +231,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button Clear;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox passwordBox;
@@ -239,7 +244,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox nameBox;
         private System.Windows.Forms.Label NameLabel;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox roleComboBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox rePasswordBox;
     }
