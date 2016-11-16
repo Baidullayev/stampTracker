@@ -66,7 +66,7 @@
             this.nameBox.Location = new System.Drawing.Point(238, 31);
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(422, 20);
-            this.nameBox.TabIndex = 2;
+            this.nameBox.TabIndex = 0;
             // 
             // docBox
             // 
@@ -113,7 +113,7 @@
             this.button1.Location = new System.Drawing.Point(756, 101);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(81, 23);
-            this.button1.TabIndex = 7;
+            this.button1.TabIndex = 3;
             this.button1.Text = "обзор";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -124,7 +124,7 @@
             this.button2.Location = new System.Drawing.Point(756, 68);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(81, 23);
-            this.button2.TabIndex = 8;
+            this.button2.TabIndex = 1;
             this.button2.Text = "обзор";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -135,7 +135,7 @@
             this.button4.Location = new System.Drawing.Point(756, 140);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(81, 31);
-            this.button4.TabIndex = 10;
+            this.button4.TabIndex = 5;
             this.button4.Text = "очистить";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -147,7 +147,7 @@
             this.viewScanImgButton.Location = new System.Drawing.Point(842, 101);
             this.viewScanImgButton.Name = "viewScanImgButton";
             this.viewScanImgButton.Size = new System.Drawing.Size(97, 23);
-            this.viewScanImgButton.TabIndex = 12;
+            this.viewScanImgButton.TabIndex = 4;
             this.viewScanImgButton.Text = "просмотр";
             this.viewScanImgButton.UseVisualStyleBackColor = true;
             this.viewScanImgButton.Click += new System.EventHandler(this.button5_Click);
@@ -163,7 +163,7 @@
             this.viewDocButton.Location = new System.Drawing.Point(843, 68);
             this.viewDocButton.Name = "viewDocButton";
             this.viewDocButton.Size = new System.Drawing.Size(97, 23);
-            this.viewDocButton.TabIndex = 13;
+            this.viewDocButton.TabIndex = 2;
             this.viewDocButton.Text = "просмотр";
             this.viewDocButton.UseVisualStyleBackColor = true;
             this.viewDocButton.Click += new System.EventHandler(this.viewDocButton_Click);
@@ -173,7 +173,7 @@
             this.saveButton.Location = new System.Drawing.Point(843, 140);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(96, 31);
-            this.saveButton.TabIndex = 14;
+            this.saveButton.TabIndex = 6;
             this.saveButton.Text = "Сохранить";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
@@ -207,7 +207,7 @@
             this.recentDocGroup.Location = new System.Drawing.Point(981, 16);
             this.recentDocGroup.Name = "recentDocGroup";
             this.recentDocGroup.Size = new System.Drawing.Size(372, 210);
-            this.recentDocGroup.TabIndex = 17;
+            this.recentDocGroup.TabIndex = 8;
             this.recentDocGroup.TabStop = false;
             this.recentDocGroup.Text = "Последние созданные документы";
             // 
@@ -217,14 +217,14 @@
             this.recentDocList.Location = new System.Drawing.Point(18, 24);
             this.recentDocList.Name = "recentDocList";
             this.recentDocList.Size = new System.Drawing.Size(338, 134);
-            this.recentDocList.TabIndex = 19;
+            this.recentDocList.TabIndex = 9;
             // 
             // openDocButton
             // 
             this.openDocButton.Location = new System.Drawing.Point(247, 164);
             this.openDocButton.Name = "openDocButton";
             this.openDocButton.Size = new System.Drawing.Size(109, 27);
-            this.openDocButton.TabIndex = 18;
+            this.openDocButton.TabIndex = 11;
             this.openDocButton.Text = "Открыть";
             this.openDocButton.UseVisualStyleBackColor = true;
             this.openDocButton.Click += new System.EventHandler(this.openDocButton_Click);
@@ -234,7 +234,7 @@
             this.cloneButton.Location = new System.Drawing.Point(132, 164);
             this.cloneButton.Name = "cloneButton";
             this.cloneButton.Size = new System.Drawing.Size(109, 27);
-            this.cloneButton.TabIndex = 1;
+            this.cloneButton.TabIndex = 10;
             this.cloneButton.Text = "Клонировать";
             this.cloneButton.UseVisualStyleBackColor = true;
             this.cloneButton.Click += new System.EventHandler(this.cloneButton_Click);
