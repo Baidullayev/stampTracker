@@ -40,7 +40,7 @@ namespace StampTracker
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
+            ConnectionStripLabel.Text = "";
            serverName = myIni.Read("serverName", "SqlServer connection parameters");
             instanceName = myIni.Read("instanceName", "SqlServer connection parameters");
             dbName = myIni.Read("dbName", "SqlServer connection parameters");
@@ -60,7 +60,7 @@ namespace StampTracker
                     String str = "server=" + serverName + "\\" + instanceName + ";database=" + dbName + ";UID=" + loginSql + ";password=" + passwordSql;           
                     SqlConnection con = new SqlConnection(str);
                     con.Open();
-                    ConnectionStripLabel.Text = "Соединение с БД установлено";                //   
+                    //ConnectionStripLabel.Text = "Соединение с БД установлено";                //   
                     con.Close();
                     connectionString = str;
                 }
@@ -81,7 +81,7 @@ namespace StampTracker
 
         public void UpdateMenuStatus(string mess)
         {
-            ConnectionStripLabel.Text = mess;
+            //ConnectionStripLabel.Text = mess;
         }
         private void создатьToolStripMenuItem_Click(object sender, EventArgs e)
         {

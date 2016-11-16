@@ -513,8 +513,7 @@ namespace StampTracker
             if(recentDocList.SelectedIndex != -1)
             {
                 clone(recentDocList.SelectedItem.ToString());
-                viewDocButton.Enabled = true;
-                viewScanImgButton.Enabled = true;
+                
             }
             
         }
@@ -529,6 +528,7 @@ namespace StampTracker
                 openForm.Show();
                 openForm.WindowState = FormWindowState.Normal;
                 openForm.WindowState = FormWindowState.Maximized;
+
                 openForm.fillingListView(recentDocList.SelectedItem.ToString());                
              
                 openForm.selectFirst();
@@ -553,6 +553,8 @@ namespace StampTracker
         }
         public void clone(string docname)
         {
+            viewDocButton.Enabled = true;
+            viewScanImgButton.Enabled = true;
             nameBox.Text = docname;
             docBox.Text = "<clone> - " + docname;
             scannedDocBox.Text = "<clone> - " + docname;

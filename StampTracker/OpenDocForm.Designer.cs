@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.scannedFileExt = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
-            this.button9 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -78,6 +78,16 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Инфармация";
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(127, 330);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(109, 23);
+            this.button9.TabIndex = 24;
+            this.button9.Text = "Клонировать";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button8
             // 
@@ -340,15 +350,6 @@
             this.label6.Size = new System.Drawing.Size(50, 13);
             this.label6.TabIndex = 23;
             this.label6.Text = "По дате:";
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(127, 330);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(109, 23);
-            this.button9.TabIndex = 24;
-            this.button9.Text = "Клонировать";
-            this.button9.UseVisualStyleBackColor = true;
             // 
             // OpenDocForm
             // 

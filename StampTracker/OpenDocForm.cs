@@ -515,6 +515,22 @@ namespace StampTracker
                 listView1.Select();
             }
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                NewDocForm newDocForm = new NewDocForm();
+                newDocForm.MdiParent = MainForm.ActiveForm;
+                newDocForm.BringToFront();
+                newDocForm.Show();
+                newDocForm.WindowState = FormWindowState.Normal;
+                newDocForm.WindowState = FormWindowState.Maximized;
+                newDocForm.clone(listView1.SelectedItems[0].SubItems[0].Text);
+                
+            }
+
+        }
     }
 
 }

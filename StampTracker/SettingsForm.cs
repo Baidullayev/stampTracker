@@ -37,7 +37,7 @@ namespace StampTracker
                 MainForm.connectionString = "server=" + MainForm.serverName + "\\" + MainForm.instanceName + ";database=" + MainForm.dbName + ";UID=" + MainForm.loginSql + ";password=" + MainForm.passwordSql;
                 MessageBox.Show("Параметры успешно сохранены!");
                
-
+                
             }
             catch(Exception es)
             {
