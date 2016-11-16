@@ -45,6 +45,14 @@ namespace StampTracker
             listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             fillingListView();
+
+            if (MainForm.currentUser.role.ToLower() == "reader")
+            {
+                button2.Enabled = false;
+                button4.Enabled = false;
+                button8.Enabled = false;
+                button9.Enabled = false;
+            }
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)

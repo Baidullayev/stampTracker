@@ -97,13 +97,14 @@
             // 
             this.roleComboBox.FormattingEnabled = true;
             this.roleComboBox.Items.AddRange(new object[] {
-            "админ",
+            "admin",
             "user",
             "reader"});
             this.roleComboBox.Location = new System.Drawing.Point(136, 190);
             this.roleComboBox.Name = "roleComboBox";
             this.roleComboBox.Size = new System.Drawing.Size(142, 21);
             this.roleComboBox.TabIndex = 6;
+            this.roleComboBox.SelectedIndexChanged += new System.EventHandler(this.roleComboBox_SelectedIndexChanged);
             // 
             // label6
             // 

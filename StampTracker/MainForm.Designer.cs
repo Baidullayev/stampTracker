@@ -97,19 +97,19 @@
             this.выйтиToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.файлToolStripMenuItem.Text = "Файл";
+            this.файлToolStripMenuItem.Text = "&Файл";
             // 
             // createMenu
             // 
             this.createMenu.Name = "createMenu";
-            this.createMenu.Size = new System.Drawing.Size(132, 22);
+            this.createMenu.Size = new System.Drawing.Size(152, 22);
             this.createMenu.Text = "Создать";
             this.createMenu.Click += new System.EventHandler(this.создатьToolStripMenuItem_Click);
             // 
             // openMenu
             // 
             this.openMenu.Name = "openMenu";
-            this.openMenu.Size = new System.Drawing.Size(132, 22);
+            this.openMenu.Size = new System.Drawing.Size(152, 22);
             this.openMenu.Text = "Открыть";
             this.openMenu.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
@@ -117,13 +117,13 @@
             // 
             this.saveMenu.Enabled = false;
             this.saveMenu.Name = "saveMenu";
-            this.saveMenu.Size = new System.Drawing.Size(132, 22);
+            this.saveMenu.Size = new System.Drawing.Size(152, 22);
             this.saveMenu.Text = "Сохранить";
             // 
             // выйтиToolStripMenuItem
             // 
             this.выйтиToolStripMenuItem.Name = "выйтиToolStripMenuItem";
-            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.выйтиToolStripMenuItem.Text = "Выйти";
             this.выйтиToolStripMenuItem.Click += new System.EventHandler(this.выйтиToolStripMenuItem_Click);
             // 
@@ -135,7 +135,7 @@
             this.EditUsersMenu});
             this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
             this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
-            this.настройкиToolStripMenuItem.Text = "Настройки";
+            this.настройкиToolStripMenuItem.Text = "&Настройки";
             // 
             // параметрыSqlServerToolStripMenuItem
             // 
@@ -163,7 +163,7 @@
             this.loginMenu.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.loginMenu.Name = "loginMenu";
             this.loginMenu.Size = new System.Drawing.Size(52, 20);
-            this.loginMenu.Text = "Войти";
+            this.loginMenu.Text = "&Войти";
             this.loginMenu.Click += new System.EventHandler(this.loginMenu_Click);
             // 
             // MainForm

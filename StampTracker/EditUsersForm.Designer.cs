@@ -88,9 +88,9 @@
             this.hiddenId.AutoSize = true;
             this.hiddenId.Location = new System.Drawing.Point(10, 230);
             this.hiddenId.Name = "hiddenId";
-            this.hiddenId.Size = new System.Drawing.Size(50, 13);
+            this.hiddenId.Size = new System.Drawing.Size(29, 13);
             this.hiddenId.TabIndex = 11;
-            this.hiddenId.Text = "hiddenID";
+            this.hiddenId.Text = "emty";
             this.hiddenId.Visible = false;
             // 
             // createUserButton
@@ -111,6 +111,7 @@
             this.deleteButton.TabIndex = 7;
             this.deleteButton.Text = "Удалить";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // saveButton
             // 

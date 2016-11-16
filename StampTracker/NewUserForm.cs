@@ -116,5 +116,10 @@ namespace StampTracker
         {
             
         }
+
+        private void roleComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

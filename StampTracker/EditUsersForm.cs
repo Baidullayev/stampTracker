@@ -67,6 +67,7 @@ namespace StampTracker
                     {
                         roleBox.SelectedIndex = 2;
                     }
+                    else { roleBox.SelectedIndex = -1; }
                 }
 
             }
@@ -154,28 +155,32 @@ namespace StampTracker
         {
             try
             {
-                if (nameBox.Text != "" && lastnameBox.Text != "" && usernameBox.Text != "" && passwordBox.Text != "")
+                if (hiddenId.Text != "empty")
                 {
-                    using (SqlConnection con = new SqlConnection(MainForm.connectionString))
+                    if (nameBox.Text != "" && lastnameBox.Text != "" && usernameBox.Text != "" && passwordBox.Text != "")
                     {
-                        con.Open();
-                        string command = "update users set firstName=@firstName, lastName=@lastName, fatherName=@fatherName, userName=@userName, password=@password, role=@role where userID=@id";
-                        SqlCommand cmd = new SqlCommand(command, con);
-                        cmd.Parameters.AddWithValue("@id", hiddenId.Text);
-                        cmd.Parameters.AddWithValue("@lastName", lastnameBox.Text);
-                        cmd.Parameters.AddWithValue("@firstName", nameBox.Text);
-                        cmd.Parameters.AddWithValue("@fatherName", fatherNameBox.Text);
-                        cmd.Parameters.AddWithValue("@userName", usernameBox.Text);
-                        cmd.Parameters.AddWithValue("@password", passwordBox.Text);
-                        cmd.Parameters.AddWithValue("@role", roleBox.SelectedText);
+                        using (SqlConnection con = new SqlConnection(MainForm.connectionString))
+                        {
+                            con.Open();
+                            string command = "update users set firstName=@firstName, lastName=@lastName, fatherName=@fatherName, userName=@userName, password=@password, role=@role where userID=@id";
+                            SqlCommand cmd = new SqlCommand(command, con);
+                            cmd.Parameters.AddWithValue("@id", hiddenId.Text);
+                            cmd.Parameters.AddWithValue("@lastName", lastnameBox.Text);
+                            cmd.Parameters.AddWithValue("@firstName", nameBox.Text);
+                            cmd.Parameters.AddWithValue("@fatherName", fatherNameBox.Text);
+                            cmd.Parameters.AddWithValue("@userName", usernameBox.Text);
+                            cmd.Parameters.AddWithValue("@password", passwordBox.Text);
+                            cmd.Parameters.AddWithValue("@role", roleBox.SelectedItem.ToString());
 
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Успешно!");
-
-                        ////////////////////////////////////////////////
+                            cmd.ExecuteNonQuery();
+                            MessageBox.Show("Успешно!");
+                            fillUserList();
+                            clear();
+                            ////////////////////////////////////////////////
+                        }
                     }
+                    else { MessageBox.Show("Пожалуйста заполните необходимые поля"); }
                 }
-                else { MessageBox.Show("Пожалуйста заполните необходимые поля"); }
 
 
             }catch(Exception e)
@@ -183,6 +188,55 @@ namespace StampTracker
                 MessageBox.Show(e.Message);
             }
          }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Вы действительно хотите удалить пользователя? ", "Удаление", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                deleteUser();
+            }
+        }
+        private void clear()
+        {
+            nameBox.Text = "";
+            lastnameBox.Text = "";
+            fatherNameBox.Text = "";
+            passwordBox.Text = "";
+            roleBox.SelectedIndex = -1;
+            usernameBox.Text = "";
+            hiddenId.Text = "empty";
+        }
+        private void deleteUser()
+        {
+            try
+            {
+                if (hiddenId.Text != "empty")
+                {
+                    using (SqlConnection con = new SqlConnection(MainForm.connectionString))
+                    {
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand("delete from users where userID=@id", con);
+                        string id = hiddenId.Text;
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+
+                        hiddenId.Text = "empty";
+                        clear();
+                        fillUserList();
+                        ////////////////////////////////////////////////
+                    }
+                }
+               
+           
+
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
     }
     }
 

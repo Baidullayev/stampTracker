@@ -40,6 +40,7 @@ namespace StampTracker
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            MenuDeactivation();
             ConnectionStripLabel.Text = "";
            serverName = myIni.Read("serverName", "SqlServer connection parameters");
             instanceName = myIni.Read("instanceName", "SqlServer connection parameters");
@@ -60,7 +61,7 @@ namespace StampTracker
                     String str = "server=" + serverName + "\\" + instanceName + ";database=" + dbName + ";UID=" + loginSql + ";password=" + passwordSql;           
                     SqlConnection con = new SqlConnection(str);
                     con.Open();
-                    //ConnectionStripLabel.Text = "Соединение с БД установлено";                //   
+                 
                     con.Close();
                     connectionString = str;
                 }
@@ -72,7 +73,7 @@ namespace StampTracker
 
                 }
             }
-            else UpdateMenuStatus("Требуется настройка сервера БД"); //ConnectionStripLabel.Text = "Требуется настройка сервера БД";
+            //else UpdateMenuStatus("Требуется настройка сервера БД"); //ConnectionStripLabel.Text = "Требуется настройка сервера БД";
 
 
             IsMdiContainer = true;
@@ -174,10 +175,24 @@ namespace StampTracker
 
         private void windowNewMenu_Click(object sender, EventArgs e)
         {
+            foreach (Form frm in this.MdiChildren)
+            frm.Close();
+
             loginMenu.Text = "Войти";
             loginMenu.DropDownItems.Clear();
             authorized = false;
             check = false;
+            currentUser = null;
+            MenuDeactivation();
+        }
+        public void MenuDeactivation()
+        {
+            createMenu.Enabled = false;
+            openMenu.Enabled = false;
+            saveMenu.Enabled = false;
+            addUserMenu.Enabled = false;
+            EditUsersMenu.Enabled = false;
+            ConnectionStripLabel.Text = "Вам необходимо войти в систему!";
         }
         public void MenuActivation()
         {
@@ -189,7 +204,8 @@ namespace StampTracker
                     loginMenu.Text = currentUser.firstName + " " + currentUser.lastName;
                     loginMenu.DropDownItems.Add(windowNewMenu);
                     check = true;
-                    if(currentUser.role.ToLower() == "admin")
+                    ConnectionStripLabel.Text = "Ваш статус: " + currentUser.role.ToLower();
+                    if (currentUser.role.ToLower() == "admin")
                     {
                         createMenu.Enabled = true;
                         openMenu.Enabled = true;
