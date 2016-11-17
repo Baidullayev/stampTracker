@@ -28,6 +28,7 @@ namespace StampTracker
         public static string connectionString = null;        
         public static bool authorized = false;
         public static bool check = false;
+        public static bool connectionState = false;
         public MainForm()
         {
             InitializeComponent();
@@ -38,10 +39,10 @@ namespace StampTracker
           
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e) // загрузка основной окна
         {
             MenuDeactivation();
-            ConnectionStripLabel.Text = "";
+            
            serverName = myIni.Read("serverName", "SqlServer connection parameters");
             instanceName = myIni.Read("instanceName", "SqlServer connection parameters");
             dbName = myIni.Read("dbName", "SqlServer connection parameters");
@@ -51,28 +52,30 @@ namespace StampTracker
             roleList.Add("admin");
             roleList.Add("user");
             roleList.Add("reader");
-            
-
-
+           
             if (serverName != "null" || instanceName != "null" || dbName != "null" || loginSql != "null" || passwordSql != "null")
             {
                 try
                 {
-                    String str = "server=" + serverName + "\\" + instanceName + ";database=" + dbName + ";UID=" + loginSql + ";password=" + passwordSql;           
+                    String str = "server=" + serverName + "\\" + instanceName + ";database=" + dbName + ";UID=" + loginSql + ";password=" + passwordSql;
                     SqlConnection con = new SqlConnection(str);
                     con.Open();
-                 
+                    connectionState = true;
                     con.Close();
                     connectionString = str;
+
                 }
                 catch (Exception es)
                 {
+                    connectionState = false;
                     UpdateMenuStatus("Соединение с БД не установлено");
                     //ConnectionStripLabel.Text = "Соединение с БД не установлено";
                     MessageBox.Show(es.Message);
 
                 }
             }
+
+
             //else UpdateMenuStatus("Требуется настройка сервера БД"); //ConnectionStripLabel.Text = "Требуется настройка сервера БД";
 
 
@@ -80,9 +83,9 @@ namespace StampTracker
             
         }
 
-        public void UpdateMenuStatus(string mess)
+        public void UpdateMenuStatus(string mess) // меняет текст ConnectionStripLabel
         {
-            //ConnectionStripLabel.Text = mess;
+            ConnectionStripLabel.Text = mess;
         }
         private void создатьToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -94,12 +97,12 @@ namespace StampTracker
             newDocForm.WindowState = FormWindowState.Maximized;
         }
 
-        private void выйтиToolStripMenuItem_Click(object sender, EventArgs e)
+        private void выйтиToolStripMenuItem_Click(object sender, EventArgs e) // меню выход программы
         {
             System.Windows.Forms.Application.Exit();
         }
 
-        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e) // открывает окно просмотра документов, тут ошибка при наименовании меню
         {
             OpenDocForm openForm = new OpenDocForm();
             openForm.MdiParent = this;
@@ -109,19 +112,16 @@ namespace StampTracker
             openForm.WindowState = FormWindowState.Maximized;
         }
 
-        private void параметрыSqlServerToolStripMenuItem_Click(object sender, EventArgs e)
+        private void параметрыSqlServerToolStripMenuItem_Click(object sender, EventArgs e) // открывает окно настроек
         {
             SettingsForm settingsForm = new SettingsForm();
             settingsForm.Show();
             
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
 
-        }
 
-        private void loginMenu_Click(object sender, EventArgs e)
+        private void loginMenu_Click(object sender, EventArgs e) // открывает окно авторизаций
         {
             if (authorized == false)
             {
@@ -130,7 +130,7 @@ namespace StampTracker
             }
         }
 
-        private void добавитьПользователяToolStripMenuItem_Click(object sender, EventArgs e)
+        private void добавитьПользователяToolStripMenuItem_Click(object sender, EventArgs e) // открывает окно добавления нового пользователя
         {
             bool notExist = true;
 
@@ -150,30 +150,29 @@ namespace StampTracker
             }
         }
 
-        private void рекдактироватьПользователейToolStripMenuItem_Click(object sender, EventArgs e)
+        private void рекдактироватьПользователейToolStripMenuItem_Click(object sender, EventArgs e) // открывает окно редактирования пользователей
         {
             EditUsersForm editUsersForm = new EditUsersForm();
             editUsersForm.Show();
             
         }
 
-        private void myMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
 
 
-        private void MainForm_Enter(object sender, EventArgs e)
-        {
-           
-        }
 
-        private void MainForm_Activated(object sender, EventArgs e)
+
+        private void MainForm_Activated(object sender, EventArgs e) //активация главного окна
         {
             MenuActivation();
+         
+            if (MainForm.connectionState)
+            {
+                this.UpdateMenuStatus("Соединение с БД установлено успешно");
+            }
+            else { this.UpdateMenuStatus("Соединение с БД не установлено!"); }
         }
 
-        private void windowNewMenu_Click(object sender, EventArgs e)
+        private void windowNewMenu_Click(object sender, EventArgs e) //это функция вызывается при деавторизаций, она меняет тект меню 
         {
             foreach (Form frm in this.MdiChildren)
             frm.Close();
@@ -185,18 +184,19 @@ namespace StampTracker
             currentUser = null;
             MenuDeactivation();
         }
-        public void MenuDeactivation()
+        public void MenuDeactivation() //функция отключения основного меню
         {
             createMenu.Enabled = false;
             openMenu.Enabled = false;
             saveMenu.Enabled = false;
             addUserMenu.Enabled = false;
             EditUsersMenu.Enabled = false;
+            currentUserStripLabel.Text = "";
             ConnectionStripLabel.Text = "Вам необходимо войти в систему!";
         }
-        public void MenuActivation()
+        public void MenuActivation() // Активация главного меню
         {
-            if (authorized)
+            if (authorized) //тут проверяется пользователь авторизован или нет
             {
                 if (check == false)
                 {
@@ -204,7 +204,7 @@ namespace StampTracker
                     loginMenu.Text = currentUser.firstName + " " + currentUser.lastName;
                     loginMenu.DropDownItems.Add(windowNewMenu);
                     check = true;
-                    ConnectionStripLabel.Text = "Ваш статус: " + currentUser.role.ToLower();
+                    currentUserStripLabel.Text = "Ваш статус: " + currentUser.role.ToLower();
                     if (currentUser.role.ToLower() == "admin")
                     {
                         createMenu.Enabled = true;

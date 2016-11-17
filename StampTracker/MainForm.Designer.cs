@@ -43,6 +43,7 @@
             this.addUserMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.EditUsersMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.loginMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.currentUserStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.myMenu.SuspendLayout();
             this.SuspendLayout();
@@ -52,7 +53,8 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loginStripLabel,
             this.toolStripStatusLabel2,
-            this.ConnectionStripLabel});
+            this.ConnectionStripLabel,
+            this.currentUserStripLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 457);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(820, 22);
@@ -86,7 +88,6 @@
             this.myMenu.Size = new System.Drawing.Size(820, 24);
             this.myMenu.TabIndex = 1;
             this.myMenu.Text = "menuStrip1";
-            this.myMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.myMenu_ItemClicked);
             // 
             // файлToolStripMenuItem
             // 
@@ -102,14 +103,14 @@
             // createMenu
             // 
             this.createMenu.Name = "createMenu";
-            this.createMenu.Size = new System.Drawing.Size(152, 22);
+            this.createMenu.Size = new System.Drawing.Size(132, 22);
             this.createMenu.Text = "Создать";
             this.createMenu.Click += new System.EventHandler(this.создатьToolStripMenuItem_Click);
             // 
             // openMenu
             // 
             this.openMenu.Name = "openMenu";
-            this.openMenu.Size = new System.Drawing.Size(152, 22);
+            this.openMenu.Size = new System.Drawing.Size(132, 22);
             this.openMenu.Text = "Открыть";
             this.openMenu.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
@@ -117,13 +118,13 @@
             // 
             this.saveMenu.Enabled = false;
             this.saveMenu.Name = "saveMenu";
-            this.saveMenu.Size = new System.Drawing.Size(152, 22);
+            this.saveMenu.Size = new System.Drawing.Size(132, 22);
             this.saveMenu.Text = "Сохранить";
             // 
             // выйтиToolStripMenuItem
             // 
             this.выйтиToolStripMenuItem.Name = "выйтиToolStripMenuItem";
-            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.выйтиToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.выйтиToolStripMenuItem.Text = "Выйти";
             this.выйтиToolStripMenuItem.Click += new System.EventHandler(this.выйтиToolStripMenuItem_Click);
             // 
@@ -166,6 +167,12 @@
             this.loginMenu.Text = "&Войти";
             this.loginMenu.Click += new System.EventHandler(this.loginMenu_Click);
             // 
+            // currentUserStripLabel
+            // 
+            this.currentUserStripLabel.Name = "currentUserStripLabel";
+            this.currentUserStripLabel.Size = new System.Drawing.Size(120, 17);
+            this.currentUserStripLabel.Text = "currentUserStripLabel";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -180,7 +187,6 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.MainForm_Activated);
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.Enter += new System.EventHandler(this.MainForm_Enter);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.myMenu.ResumeLayout(false);
@@ -207,5 +213,6 @@
         private System.Windows.Forms.ToolStripMenuItem loginMenu;
         private System.Windows.Forms.ToolStripMenuItem addUserMenu;
         private System.Windows.Forms.ToolStripMenuItem EditUsersMenu;
+        private System.Windows.Forms.ToolStripStatusLabel currentUserStripLabel;
     }
 }

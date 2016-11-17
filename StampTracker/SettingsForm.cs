@@ -19,14 +19,14 @@ namespace StampTracker
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) // сохраняет изменения
         {
             MainForm.serverName = serversBox.Text;
             MainForm.instanceName = instanceBox.Text;
             MainForm.dbName = dbNameBox.Text;
             MainForm.loginSql = loginBox.Text;
             MainForm.passwordSql = passwordBox.Text;
-
+           
             try
             {
                 MainForm.myIni.Write("serverName", MainForm.serverName, "SqlServer connection parameters");
@@ -36,6 +36,11 @@ namespace StampTracker
                 MainForm.myIni.Write("password", MainForm.passwordSql, "SqlServer connection parameters");
                 MainForm.connectionString = "server=" + MainForm.serverName + "\\" + MainForm.instanceName + ";database=" + MainForm.dbName + ";UID=" + MainForm.loginSql + ";password=" + MainForm.passwordSql;
                 MessageBox.Show("Параметры успешно сохранены!");
+                bool test = testConnection(needFeedback:false);
+                if(test)
+                {
+                    MainForm.connectionState = true;
+                }else MainForm.connectionState = false;
                 this.Close();
                 
             }
@@ -47,7 +52,7 @@ namespace StampTracker
 
         }
 
-        private void SettingsForm_Load(object sender, EventArgs e)
+        private void SettingsForm_Load(object sender, EventArgs e) // загрузка окна настройки параметров
         {
             serversBox.Items.Add(MainForm.serverName);
 
@@ -64,19 +69,27 @@ namespace StampTracker
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //  кнопка проверки подключения к серверу БД
+        {
+            bool test = testConnection();
+        }
+        public bool testConnection(bool needFeedback = true)// фукнция проверки подключения к серверу БД
         {
             try
             {
                 String str = "server=" + serversBox.Text + "\\" + instanceBox.Text + ";database=" + dbNameBox.Text + ";UID=" + loginBox.Text + ";password=" + passwordBox.Text;
                 SqlConnection con = new SqlConnection(str);
                 con.Open();
-                MessageBox.Show("Успешно!"); 
+                if (needFeedback)
+                { MessageBox.Show("Успешно!"); }
                 con.Close();
+                return true; 
             }
             catch (Exception es)
-            {                
-                MessageBox.Show(es.Message);
+            {
+                if (needFeedback)
+                { MessageBox.Show(es.Message); }
+                return false;
             }
         }
     }

@@ -18,12 +18,10 @@ namespace StampTracker
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) // кнопка запроса авторизаций
         {
             try
             {
-
-
                 string username = loginBox.Text;
                 string password = passwordBox.Text;
                 using (SqlConnection con = new SqlConnection(MainForm.connectionString))
@@ -37,7 +35,7 @@ namespace StampTracker
                         if (reader.HasRows)
                         {
                             reader.Read();
-                            MainForm.currentUser = new User();
+                            MainForm.currentUser = new User(); // в случае успешной авторизации добавляем текущего пользователя 
                             MainForm.currentUser.userID = reader.GetInt32(0);
                             MainForm.currentUser.firstName = reader.GetString(1);
                             MainForm.currentUser.lastName = reader.GetString(2);

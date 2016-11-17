@@ -19,7 +19,7 @@ namespace StampTracker
             InitializeComponent();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e) //загружает окно для добавление нового пользователя
         {
             bool notExist = true;
 
@@ -40,7 +40,7 @@ namespace StampTracker
 
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e) // при выборе пользователя из списка запольняет блок "детальная информация" 
         {
             int index = -1;
             if (listView1.SelectedItems.Count > 0)
@@ -75,7 +75,7 @@ namespace StampTracker
 
 
         }
-        private void fillUserList(string lastName = null)
+        private void fillUserList(string lastName = null) //заполняет список пользователей 
         {
             try
             {
@@ -143,7 +143,7 @@ namespace StampTracker
             fillUserList(textBox1.Text);
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
+        private void saveButton_Click(object sender, EventArgs e) //кнопка сохранения изменнии информации о пользователе
         {
             var result = MessageBox.Show("Вы действительно хотите сохранить изменения? ", "Изменение", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
@@ -151,7 +151,7 @@ namespace StampTracker
                 editUser();
             }
         }
-        private void editUser()
+        private void editUser() //функция для внесения изменении информаций о пользователе в базу данных
         {
             try
             {
@@ -189,7 +189,7 @@ namespace StampTracker
             }
          }
 
-        private void deleteButton_Click(object sender, EventArgs e)
+        private void deleteButton_Click(object sender, EventArgs e) // кнопка удаления пользователя
         {
             var result = MessageBox.Show("Вы действительно хотите удалить пользователя? ", "Удаление", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
@@ -207,7 +207,7 @@ namespace StampTracker
             usernameBox.Text = "";
             hiddenId.Text = "empty";
         }
-        private void deleteUser()
+        private void deleteUser() //функция удаления пользователя
         {
             try
             {
