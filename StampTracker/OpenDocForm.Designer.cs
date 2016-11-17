@@ -131,7 +131,6 @@
             this.newScannedDocPathBox.Size = new System.Drawing.Size(188, 20);
             this.newScannedDocPathBox.TabIndex = 20;
             this.newScannedDocPathBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.newScannedDocPathBox_MouseClick);
-            this.newScannedDocPathBox.TextChanged += new System.EventHandler(this.newScannedDocPathBox_TextChanged);
             // 
             // button3
             // 
@@ -195,7 +194,6 @@
             this.newDocPathBox.Size = new System.Drawing.Size(196, 20);
             this.newDocPathBox.TabIndex = 21;
             this.newDocPathBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.newDocPathBox_MouseClick);
-            this.newDocPathBox.TextChanged += new System.EventHandler(this.newDocPathBox_TextChanged);
             // 
             // button1
             // 

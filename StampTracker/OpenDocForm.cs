@@ -19,27 +19,6 @@ namespace StampTracker
             InitializeComponent();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            //    DataTable dt = System.Data.Sql.SqlDataSourceEnumerator.Instance.GetDataSources();
-            //    foreach (DataRow dr in dt.Rows)
-            //    {
-            //        foreach (DataColumn col in dt.Columns)
-            //        {
-            //            listBox1.Items.Add(col.ColumnName);
-            //            //Console.WriteLine("{0,-15}: {1}", col.ColumnName, dr[col]);
-            //        }
-            //        Console.WriteLine();
-            //    }
-            //}
-        }
-
-
         private void OpenDocForm_Load(object sender, EventArgs e)
         {
             listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
@@ -52,6 +31,7 @@ namespace StampTracker
                 button4.Enabled = false;
                 button8.Enabled = false;
                 button9.Enabled = false;
+                button7.Enabled = false;
             }
         }
 
@@ -69,12 +49,12 @@ namespace StampTracker
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //кнопка просмотра выбранного документа
         {
             openFileForView("docFile");
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) //кнопка для для выбора файла
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.InitialDirectory = "c:\\";
@@ -88,17 +68,17 @@ namespace StampTracker
             }
         }
 
-        private void button5_Click_1(object sender, EventArgs e)
+        private void button5_Click_1(object sender, EventArgs e)// кнопка сохранения документа
         {
             saveDocAs();
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e) // кнопка сохранения отсканированного документа
         {
             saveDocAs("scannedDocFile");
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void button7_Click(object sender, EventArgs e)// кнопка удаления документа
         {
 
             var result = MessageBox.Show("Вы действительно хотите удалить документ - " + nameBox.Text + "?", "Удаление", MessageBoxButtons.YesNo);
@@ -120,7 +100,7 @@ namespace StampTracker
             }
         }
 
-        public void fillingListView(string searchingArg = "*", string uniqueSearch = "*", string searchingByDate = "*")
+        public void fillingListView(string searchingArg = "*", string uniqueSearch = "*", string searchingByDate = "*") //функция заполнения списка документов
         {
             listView1.Clear();
             listView1.View = View.Details;
@@ -207,12 +187,12 @@ namespace StampTracker
             comboBox1.SelectedIndex = -1;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)//кнопка просмотра отсканированного документа 
         {
             openFileForView("scannedDocFile");
         }
 
-        private void saveDocAs(string docType = "docFile")
+        private void saveDocAs(string docType = "docFile")//функция сохранения документа на компьютере
         {
             using (SqlConnection con = new SqlConnection(MainForm.connectionString))
             {
@@ -257,7 +237,7 @@ namespace StampTracker
 
             }
         }
-        public void openFileForView(string docType)
+        public void openFileForView(string docType) //функция просмотра документа
         {
             if (hidden_id_label.Text != "empty")
             {
@@ -316,7 +296,7 @@ namespace StampTracker
             }
         }
 
-        private void saveChangedDoc()
+        private void saveChangedDoc() // функция сохранения изменений в документе
         {
             var result = MessageBox.Show("Вы действительно хотите сохранить?", "Сохранение", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
@@ -447,7 +427,7 @@ namespace StampTracker
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e) //кнопка для прикрепления другого документа 
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.InitialDirectory = "c:\\";
@@ -461,16 +441,6 @@ namespace StampTracker
             }
         }
 
-        private void newDocPathBox_TextChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void newScannedDocPathBox_TextChanged(object sender, EventArgs e)
-        {
-           
-        }
-
         private void newScannedDocPathBox_MouseClick(object sender, MouseEventArgs e)
         {
             MessageBox.Show(newScannedDocPathBox.Text);
@@ -481,7 +451,7 @@ namespace StampTracker
             MessageBox.Show(newDocPathBox.Text);
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void button8_Click(object sender, EventArgs e) //кнопка сохранения изменений документа в базе данных
         {
             saveChangedDoc();
         }
@@ -515,7 +485,7 @@ namespace StampTracker
         {
             fillingListView(searchingByDate: dateTimePicker1.Value.Date.ToShortDateString());
         }
-        public void selectFirst()
+        public void selectFirst() //дополнительная необходимая функция
         {
             if (listView1.Items.Count > 0)
             {
@@ -524,7 +494,7 @@ namespace StampTracker
             }
         }
 
-        private void button9_Click(object sender, EventArgs e)
+        private void button9_Click(object sender, EventArgs e) //кнопка клонирования
         {
             if (listView1.SelectedItems.Count > 0)
             {
